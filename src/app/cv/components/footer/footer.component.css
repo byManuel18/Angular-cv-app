@@ -1,0 +1,17 @@
+
+footer {
+  animation-range: entry 100% cover 10%;
+  animation-timeline: --revealing;
+  animation: linear .3s fadeIn;
+  background: #fdfdfd;
+  border-top: 1px solid #eee;
+  bottom: 0;
+  font-size: .85rem;
+  padding-block: 8px;
+  position: fixed;
+  text-align: center;
+  view-timeline-axis: inline;
+  view-timeline-name: --revealing;
+  width: 100%;
+}
+
