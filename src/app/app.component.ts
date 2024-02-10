@@ -1,7 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { PrintService } from './shared/services/print.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +11,5 @@ import { PrintService } from './shared/services/print.service';
 })
 export class AppComponent {
 
- public printService = inject(PrintService);
 
 }
