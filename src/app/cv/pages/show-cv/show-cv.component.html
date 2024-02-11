@@ -1,9 +1,19 @@
-<ninja-keys openHotkey="ctrl+K" ></ninja-keys>
 
-<main>
-  <p>MYCV</p>
-</main>
+@if ( _cvToShow() ) {
 
-<cv-footer>
-  <kbd>Ctrl</kbd> + <kbd>K</kbd> parar abrir la Paleta de Comandos.
-</cv-footer>
+  <ninja-keys openHotkey="ctrl+K" ></ninja-keys>
+
+  <main>
+    <cv-personal-info [personalInfoData]=" _cvToShow()!.basics "></cv-personal-info>
+  </main>
+
+  <cv-footer>
+    <kbd>Ctrl</kbd> + <kbd>K</kbd> parar abrir la Paleta de Comandos.
+  </cv-footer>
+
+} @else {
+  <section>
+    <h1>Problemas al cargar el CV :(</h1>
+  </section>
+}
+

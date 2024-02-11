@@ -1,0 +1,34 @@
+
+section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 38px 0;
+  gap: 1rem;
+}
+
+img {
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  object-fit: cover;
+  width: 128px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.information {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-right: 32px;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+

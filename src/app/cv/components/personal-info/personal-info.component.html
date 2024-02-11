@@ -1,0 +1,25 @@
+@if ( personalInfoData ) {
+  <section>
+
+    <article class="information">
+
+      <h1>{{ personalInfoData.name }}</h1>
+      <h2>{{ personalInfoData.label }}</h2>
+      <h3>
+        {{ personalInfoData.location.city | titlecase  }}
+        ({{personalInfoData.location.postalCode}}),
+        {{ personalInfoData.location.region | titlecase }}
+      </h3>
+
+    </article>
+
+    <article>
+      <figure>
+        <img [src]="personalInfoData.image" alt="Img User">
+      </figure>
+      <ng-container [ngComponentOutlet]="prueba" [ngComponentOutletInputs]="{ color: 'blue' }"></ng-container>
+    </article>
+
+  </section>
+}
+

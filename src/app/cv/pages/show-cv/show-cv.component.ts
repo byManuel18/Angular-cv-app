@@ -16,7 +16,7 @@ export class ShowCvComponent implements OnInit{
 
   activedRouter = inject(ActivatedRoute);
 
-  private readonly _cvToShow = signal<Cv | null>(null) ;
+  _cvToShow = signal<Cv | null>(null) ;
 
   private cvService = inject(CvService);
 

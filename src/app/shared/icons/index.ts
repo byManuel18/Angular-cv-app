@@ -1,0 +1,16 @@
+export { CsscIconComponent } from "./cssIcon.component";
+export { GithubIconComponent } from "./githubIcon.component";
+export { GitIconComponent } from "./gitIcon.component";
+export { HtmlIconComponent } from "./htmlIcon.component";
+export { JavaScriptIconComponent } from "./javaScriptIcon.component";
+export { LinkedinIconComponent } from "./linkedinIcon.component";
+export { MailIconComponent } from "./mailIcon.component";
+export { NextIconComponent } from "./nextIcon.component";
+export { NodeIconComponent } from "./nodeIcon.component";
+export { PhoneIconComponent } from "./phoneIcon.component";
+export { ReactIconComponent } from "./reactIcon.component";
+export { SqlIconComponent } from "./sqlIcon.component";
+export { TailwindIconComponent } from "./tailwindIcon.component";
+export { TypeIconComponent } from "./typeIcon.component";
+export { WorldMapIconComponent } from "./worldMapIcon.component";
+export { XIconComponent } from "./xIcon.component";

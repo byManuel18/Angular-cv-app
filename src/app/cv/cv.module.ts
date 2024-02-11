@@ -5,16 +5,19 @@ import { CvRoutingModule } from './cv-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { LayoutPageComponent } from './layout/layout-page/layout-page.component';
 import { ShowCvComponent } from './pages/show-cv/show-cv.component';
+import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
+
 
 @NgModule({
   declarations: [
     LayoutPageComponent,
     ShowCvComponent,
-    FooterComponent
+    PersonalInfoComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
-    CvRoutingModule,
+    CvRoutingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
