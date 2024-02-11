@@ -1,6 +1,7 @@
 
 export const CVMODULEROUTES = {
 
-  BASE: 'cv'
+  BASE: 'cv',
+  SHOWCV: 'show-cv'
 
 }
