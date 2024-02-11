@@ -1,3 +1,4 @@
+
 export interface Cv {
   basics:       Basics;
   work:         Volunteer[];
@@ -41,10 +42,12 @@ export interface Location {
 }
 
 export interface Profile {
-  network:  string;
+  network: Network;
   username: string;
   url:      string;
 }
+
+export type Network = 'x' | 'linkedin' | 'github' | 'mail' | 'phone';
 
 export interface Certificate {
   name:   string;

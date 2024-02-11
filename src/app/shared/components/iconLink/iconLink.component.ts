@@ -15,7 +15,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 export class IconLinkComponent {
 
   @Input() link: string = '';
-  @Input() icon: keyof typeof IconsMap = 'icon-x';
+  @Input() icon!: keyof typeof IconsMap;
   @Input() iconColor: string = 'currentColor';
 
   getIconComponent (icon:  keyof typeof IconsMap) {

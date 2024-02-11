@@ -18,6 +18,14 @@
       "network": "x",
       "username": "john",
       "url": "https://twitter.com/john"
+    },{
+      "network": "linkedin",
+      "username": "john",
+      "url": "https://twitter.com/john"
+    },{
+      "network": "github",
+      "username": "john",
+      "url": "https://twitter.com/john"
     }]
   },
   "work": [{
