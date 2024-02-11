@@ -1,7 +1,6 @@
 
 import { Component, Input } from '@angular/core';
 import { Basics } from '../../interfaces/cv.interface';
-import { GithubIconComponent } from '../../../shared/icons';
 
 @Component({
   selector: 'cv-personal-info',
@@ -11,8 +10,5 @@ import { GithubIconComponent } from '../../../shared/icons';
 export class PersonalInfoComponent {
 
   @Input() personalInfoData!: Basics;
-
-  prueba = GithubIconComponent
-
 
 }

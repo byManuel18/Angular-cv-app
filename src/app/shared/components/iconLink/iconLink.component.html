@@ -1,0 +1,5 @@
+<a [href]="link" target="_blank">
+  @if(icon){
+    <ng-container [ngComponentOutlet]="getIconComponent(icon)" [ngComponentOutletInputs]="{ color: iconColor }"></ng-container>
+  }
+</a>

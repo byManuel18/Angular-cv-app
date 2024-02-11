@@ -29,7 +29,8 @@ import { Component, Input } from '@angular/core';
         d="M12 18.574c1.926 1.893 3.821 2.768 5 2.086c1.913 -1.104 1.226 -5.877 -1.536 -10.66c-.375 -.65 -.78 -1.283 -1.212 -1.897"
     ></path><path d="M11.5 12.866a1 1 0 1 0 1 -1.732a1 1 0 0 0 -1 1.732z"
     ></path></svg>
-  `
+  `,
+  styleUrl: './icons.css'
 })
 export class ReactIconComponent {
   @Input() color = 'currentColor';

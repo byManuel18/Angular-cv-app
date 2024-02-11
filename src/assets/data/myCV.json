@@ -15,7 +15,7 @@
       "region": "California"
     },
     "profiles": [{
-      "network": "Twitter",
+      "network": "x",
       "username": "john",
       "url": "https://twitter.com/john"
     }]

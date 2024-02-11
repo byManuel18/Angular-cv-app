@@ -1,0 +1,17 @@
+a {
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  color: #777;
+  display: inline-flex;
+  height: 30px;
+  justify-content: center;
+  transition: all .3s ease;
+  width: 30px;
+}
+
+
+a:hover {
+  background: #eee;
+  border: 1px solid #ddd;
+}

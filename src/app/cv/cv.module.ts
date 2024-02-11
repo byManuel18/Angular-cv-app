@@ -6,6 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LayoutPageComponent } from './layout/layout-page/layout-page.component';
 import { ShowCvComponent } from './pages/show-cv/show-cv.component';
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
+import { IconLinkComponent } from '../shared/components/iconLink/iconLink.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PersonalInfoComponent } from './components/personal-info/personal-info.
   ],
   imports: [
     CommonModule,
-    CvRoutingModule
+    CvRoutingModule,
+    IconLinkComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
