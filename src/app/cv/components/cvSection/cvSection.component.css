@@ -1,0 +1,16 @@
+h2 {
+  margin-bottom: 8px;
+  font-weight: 700;
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+section {
+  margin: 0 auto 48px;
+}

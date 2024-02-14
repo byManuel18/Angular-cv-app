@@ -7,7 +7,6 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutPageComponent,
-    title: 'CV-Layout',
     children: [
       {
         path: `${ CVMODULEROUTES.SHOWCV }/:jObj`,

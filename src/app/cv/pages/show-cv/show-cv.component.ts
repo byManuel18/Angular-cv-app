@@ -1,38 +1,41 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 
 import 'ninja-keys';
 
-import { Cv } from '../../interfaces/cv.interface';
+import { PrintService } from '../../../shared/services/print.service';
 import { CvService } from '../../services/cv.service';
+
+import { Cv } from '../../interfaces/cv.interface';
+import { CvSection } from '../../interfaces/cv-section.interface';
 
 @Component({
   selector: 'show-cv',
   templateUrl: './show-cv.component.html',
-  styleUrl: './show-cv.component.css'
+  styleUrl: './show-cv.component.css',
 })
-export class ShowCvComponent implements OnInit{
-
-  activedRouter = inject(ActivatedRoute);
-
-  _cvToShow = signal<Cv | null>(null) ;
-
+export class ShowCvComponent {
+  private activedRouter = inject(ActivatedRoute);
   private cvService = inject(CvService);
+  printService = inject(PrintService);
 
-  ngOnInit(): void {
-    this.activedRouter.params
-      .pipe(
-        switchMap(params => this.getCv(params['jObj']))
-      )
-      .subscribe(result =>{
-        this._cvToShow.set(result);
-      })
-  }
+  _cvToShow = toSignal<Cv | null>(
+    this.activedRouter.params.pipe(
+      switchMap((params) => this.getCv(params['jObj']))
+    ),
+    {
+      initialValue: null,
+    }
+  );
 
-  getCv(param: string = ''): Observable<Cv | null>{
+  _sectionsCV = computed<CvSection[]>(() => {
+    return this.formatCvArticles(this._cvToShow())
+  });
 
-    if(param === 'myCV' ){
+  getCv(param: string = ''): Observable<Cv | null> {
+    if (param === 'myCV') {
       return this.cvService.getMyCv();
     }
 
@@ -43,7 +46,54 @@ export class ShowCvComponent implements OnInit{
     } catch (error) {
       return of(null);
     }
-
   }
 
+  formatCvArticles(cv: Cv | null): CvSection[] {
+    const sections: CvSection[] = [];
+
+    if (!cv) {
+      return [];
+    }
+    sections.push({
+      title: 'Sobre mí',
+      articles: [{ text: cv.basics.summary }],
+    });
+
+    sections.push({
+      title: 'Experiencia laboral',
+      articles: [
+        ...cv.work.map((work) => ({
+          title: work.name,
+          subTitle: work.position,
+          time: [
+            work.startDate.split('-')[0],
+            work.endDate ? work.endDate.split('-')[0] : 'Actual',
+          ]
+            .filter(Boolean)
+            .join(' - '),
+          text: work.summary,
+          url: work.url,
+        })),
+      ],
+    });
+
+    sections.push({
+      title: 'Educación',
+      articles: [
+        ...cv.education.map((edu) => ({
+          title: edu.institution,
+          subTitle: edu.area,
+          time: [
+            edu.startDate.split('-')[0],
+            edu.endDate ? edu.endDate.split('-')[0] : 'Actual',
+          ]
+            .filter(Boolean)
+            .join(' - '),
+          url: edu.url,
+        })),
+      ],
+    });
+
+    return sections;
+  }
 }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { CvRoutingModule } from './cv-routing.module';
 
+import { CvArticleComponent } from './components/cvArticle/cvArticle.component';
+import { CvSectionComponent } from './components/cvSection/cvSection.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { IconLinkComponent } from '../shared/components/iconLink/iconLink.component';
 import { LayoutPageComponent } from './layout/layout-page/layout-page.component';
@@ -13,6 +15,8 @@ import { WorldMapIconComponent } from '../shared/icons';
 
 @NgModule({
   declarations: [
+    CvArticleComponent,
+    CvSectionComponent,
     FooterComponent,
     LayoutPageComponent,
     PersonalInfoComponent,

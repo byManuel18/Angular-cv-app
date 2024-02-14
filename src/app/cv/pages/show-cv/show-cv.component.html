@@ -1,15 +1,20 @@
 
 @if ( _cvToShow() ) {
 
-  <ninja-keys openHotkey="ctrl+K" ></ninja-keys>
-
   <main>
     <cv-personal-info [personalInfoData]=" _cvToShow()!.basics "></cv-personal-info>
+
+    @for (section of _sectionsCV(); track $index) {
+      <cv-section [sectionData]="section"/>
+    }
   </main>
 
-  <cv-footer>
-    <kbd>Ctrl</kbd> + <kbd>K</kbd> parar abrir la Paleta de Comandos.
-  </cv-footer>
+  @if(!printService.isPrint()){
+    <ninja-keys openHotkey="ctrl+K" ></ninja-keys>
+    <cv-footer>
+      <kbd>Ctrl</kbd> + <kbd>K</kbd> parar abrir la Paleta de Comandos.
+    </cv-footer>
+  }
 
 } @else {
   <section>

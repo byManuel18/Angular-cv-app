@@ -5,12 +5,12 @@
 
       <h1>{{ personalInfoData.name }}</h1>
       <h2>{{ personalInfoData.label }}</h2>
-      <h3>
+      <span>
         <icon-worldmap color="#777" />
         {{ personalInfoData.location.city | titlecase  }}
         ({{personalInfoData.location.postalCode}}),
         {{ personalInfoData.location.region | titlecase }}
-      </h3>
+      </span>
 
       @if(!printService.isPrint()){
         <footer>
