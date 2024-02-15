@@ -11,6 +11,7 @@ import { LayoutPageComponent } from './layout/layout-page/layout-page.component'
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 import { ShowCvComponent } from './pages/show-cv/show-cv.component';
 import { WorldMapIconComponent } from '../shared/icons';
+import { ChipComponent } from '../shared/components/chip/chip.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { WorldMapIconComponent } from '../shared/icons';
   imports: [
     CommonModule,
     CvRoutingModule,
+    ChipComponent,
     IconLinkComponent,
     WorldMapIconComponent
   ],
