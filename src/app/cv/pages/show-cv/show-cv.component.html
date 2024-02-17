@@ -8,6 +8,14 @@
       <cv-section [sectionData]="section"/>
     }
 
+    <cv-section [sectionData]="{title: 'Proyectos', articles: []}">
+      <ul id="project">
+        @for (project of _cvToShow()?.projects; track $index) {
+          <li> <cv-card [data]="project"/> </li>
+        }
+      </ul>
+    </cv-section>
+
     @if(_skillsCV()){
       <cv-section [sectionData]="_skillsCV()!">
         <ul>

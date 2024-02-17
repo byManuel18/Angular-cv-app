@@ -64,3 +64,9 @@ p {
     opacity: 1;
   }
 }
+
+.fontSize_6 {
+  * {
+    font-size: .6rem;
+  }
+}

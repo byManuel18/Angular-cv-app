@@ -1,4 +1,4 @@
-import { Component, inject, computed } from '@angular/core';
+import { Component, inject, computed, effect } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
@@ -41,6 +41,12 @@ export class ShowCvComponent {
 
     return this.formatSkillsSection(this._cvToShow()!);
   })
+
+  private titlePageEffect = effect(() => {
+    if(this._cvToShow()) {
+      document.title= `CV de ${this._cvToShow()?.basics.name}`
+    }
+  });
 
   getCv(param: string = ''): Observable<Cv | null> {
     if (param === 'myCV') {

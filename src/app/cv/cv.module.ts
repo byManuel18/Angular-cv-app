@@ -10,13 +10,15 @@ import { IconLinkComponent } from '../shared/components/iconLink/iconLink.compon
 import { LayoutPageComponent } from './layout/layout-page/layout-page.component';
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 import { ShowCvComponent } from './pages/show-cv/show-cv.component';
-import { WorldMapIconComponent } from '../shared/icons';
+import { GithubIconComponent, WorldMapIconComponent } from '../shared/icons';
 import { ChipComponent } from '../shared/components/chip/chip.component';
+import { CvCardComponent } from './components/cvCard/cvCard.component';
 
 
 @NgModule({
   declarations: [
     CvArticleComponent,
+    CvCardComponent,
     CvSectionComponent,
     FooterComponent,
     LayoutPageComponent,
@@ -28,6 +30,7 @@ import { ChipComponent } from '../shared/components/chip/chip.component';
     CvRoutingModule,
     ChipComponent,
     IconLinkComponent,
+    GithubIconComponent,
     WorldMapIconComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
