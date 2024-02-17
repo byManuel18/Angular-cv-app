@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { ModalService } from './shared/services/modalService.service';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +12,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
 
+  viewContainerRef = inject(ViewContainerRef);
+  modalService = inject(ModalService);
+
+  constructor(){
+    this.modalService.viewContainerRef = this.viewContainerRef;
+  }
 
 }

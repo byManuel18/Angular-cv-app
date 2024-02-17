@@ -70,3 +70,7 @@ p {
     font-size: .6rem;
   }
 }
+
+.modalOpen {
+ overflow: hidden;
+}

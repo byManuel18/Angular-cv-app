@@ -119,4 +119,5 @@ export class ShowCvComponent {
 
     return sectionSkills;
   }
+
 }

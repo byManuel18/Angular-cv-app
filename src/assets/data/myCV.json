@@ -1,118 +1,84 @@
 {
   "basics": {
-    "name": "Miguel Ángel Durán",
-    "label": "Full Stack Developer con más de 15 años de experiencia & Creador de Contenido de Programación",
+    "name": "Antonio Manuel Guerrero Trujillo",
+    "label": "Full Stack Developer",
     "image": "assets/imgs/myImg.jpg",
-    "email": "miduga@gmail.com",
-    "phone": "+34 688888888",
-    "url": "https://midu.dev",
+    "email": "antoniomanu533@gmail.com",
+    "phone": "+34 618866651",
+    "url": "",
     "summary": "+15 años de experiencia como Desarrollador Web. Actualmente soy Creador de Contenido y Divulgador sobre Programación. Vivo en Barcelona, España. He trabajado en diferentes entornos: desde acelerar el desarrollo de start-ups hasta liderando equipos de empresas multinacionales.",
     "location": {
       "address": "",
-      "postalCode": "08820",
-      "city": "el Prat de Llobregat",
+      "postalCode": "14014",
+      "city": "Córdoba",
       "countryCode": "ES",
       "region": "España"
     },
     "profiles": [
       {
         "network": "linkedin",
-        "username": "midudev",
-        "url": "https://linkedin.com/in/midudev"
-      },
-      {
-        "network": "x",
-        "username": "midudev",
-        "url": "https://x.com/midudev"
+        "username": "antonio-manuel-guerrero-trujillo",
+        "url": "https://www.linkedin.com/in/antonio-manuel-guerrero-trujillo-1b5558208/"
       },
       {
         "network": "github",
-        "username": "midudev",
-        "url": "https://github.com/midudev"
+        "username": "byManuel18",
+        "url": "https://github.com/byManuel18"
       }
     ]
   },
   "work": [
     {
-      "name": "midudev",
-      "position": "Divulgador sobre Programación Web",
-      "url": "https://twitch.tv/midudev",
-      "startDate": "2021-01-01",
-      "endDate": null,
+      "name": "Everybind",
+      "position": "Junior FrontEnd Developer",
+      "url": "",
+      "startDate": "2021-03-14",
+      "endDate": "2021-06-01",
       "summary": "Streamer de programación más visto en Español en Twitch. +1 millón de seguidores entre todas mis redes sociales. Reconocido por Google, Microsoft y GitHub por mi impacto en la comunidad de desarrolladores.",
       "highlights": [
-        "Started the company"
+        "Angular",
+        "Angular Material",
+        "Firebase",
+        "Jira",
+        "Git"
       ]
     },
     {
-      "name": "Adevinta",
-      "position": "Lead Frontend Architect",
+      "name": "Atmira",
+      "position": "FrontEnd Developer",
       "url": "https://twitch.tv/midudev",
-      "startDate": "2016-06-01",
-      "endDate": "2022-09-01",
+      "startDate": "2021-07-05",
+      "endDate": null,
       "summary": "Lideré una convergencia técnica entre diferentes productos y migramos una arquitectura monolítica a otra más flexible y optimizada. Fomenté buenas prácticas y mejoras en la cultura de rendimiento, además de la entrega rápida de valor a los usuarios.",
       "highlights": [
-        "Started the company"
-      ]
-    },
-    {
-      "name": "Hubii",
-      "position": "Senior FrontEnd Developer",
-      "startDate": "2011-03-01",
-      "endDate": "2016-05-01",
-      "summary": "Desarrollé una plataforma de noticias geolocalizadas y una API para consumir la información. Escalé los servicios para soportar la carga de más de cientos de miles de peticiones al día. Recorté los tiempos de entrega y despliegues a producción a la mitad. Colaboré con Mozilla y Telefónica para desarrollar la primera app para televisores con FirefoxOS.",
-      "highlights": [
-        "Started the company"
+        "Angular",
+        "Ionic",
+        "Vue",
+        "Git",
+        "Jira"
       ]
     }
   ],
-  "volunteer": [{
-    "organization": "Organization",
-    "position": "Volunteer",
-    "url": "https://organization.com/",
-    "startDate": "2012-01-01",
-    "endDate": "2013-01-01",
-    "summary": "Description…",
-    "highlights": [
-      "Awarded 'Volunteer of the Month'"
-    ]
-  }],
+  "volunteer": [],
   "education": [{
-    "institution": "Universitat Oberta de Catalunya",
-    "url": "https://www.uoc.edu/portal/es/index.html",
-    "area": "Ingeniero de Software",
-    "studyType": "Bachelor",
-    "startDate": "2003-01-01",
-    "endDate": "2009-01-01",
-    "score": "4.0",
+    "institution": "IES Francisco de los Ríos",
+    "url": null,
+    "area": "Desarrollo de aplicaciones Multiplataforma",
+    "studyType": "",
+    "startDate": "2019",
+    "endDate": "2021",
+    "score": "",
     "courses": [
-      "DB1101 - Basic SQL"
     ]
   }],
-  "awards": [{
-    "title": "Award",
-    "date": "2014-11-01",
-    "awarder": "Company",
-    "summary": "There is no spoon."
-  }],
-  "certificates": [{
-    "name": "Certificate",
-    "date": "2021-11-07",
-    "issuer": "Company",
-    "url": "https://certificate.com"
-  }],
-  "publications": [{
-    "name": "Publication",
-    "publisher": "Company",
-    "releaseDate": "2014-10-01",
-    "url": "https://publication.com",
-    "summary": "Description…"
-  }],
+  "awards": [],
+  "certificates": [],
+  "publications": [],
   "skills": [
     {
       "icon": "html",
       "name": "Html",
-      "level": "Master",
+      "level": "",
       "keywords": [
         "Desarrollo Web", "Frontend"
       ]
@@ -120,7 +86,7 @@
     {
       "icon": "css",
       "name": "Css",
-      "level": "Master",
+      "level": "",
       "keywords": [
         "Desarrollo Web", "Frontend", "Diseño Responsive"
       ]
@@ -128,23 +94,15 @@
     {
       "icon": "javaScript",
       "name": "JavaScript",
-      "level": "Master",
+      "level": "",
       "keywords": [
         "Desarrollo Web", "Frontend", "Backend", "Fullstack"
       ]
     },
     {
-      "icon": "tailwind",
-      "name": "Tailwind",
-      "level": "Avanzado",
-      "keywords": [
-        "Desarrollo Web", "Frontend", "CSS Framework", "Diseño Responsive"
-      ]
-    },
-    {
       "icon": "typeScript",
       "name": "TypeScript",
-      "level": "Avanzado",
+      "level": "",
       "keywords": [
         "Desarrollo Web", "Frontend", "Backend", "JavaScript Superset"
       ]
@@ -152,7 +110,7 @@
     {
       "icon": "node",
       "name": "Node",
-      "level": "Avanzado",
+      "level": "",
       "keywords": [
         "Desarrollo Web", "Backend", "JavaScript", "Servidor"
       ]
@@ -160,7 +118,7 @@
     {
       "icon": "mySql",
       "name": "MySql",
-      "level": "Avanzado",
+      "level": "",
       "keywords": [
         "Bases de Datos", "SQL", "Almacenamiento de Datos", "Backend"
       ]
@@ -180,22 +138,6 @@
       "keywords": [
         "Control de Versiones", "Colaboración", "Código Fuente", "Git"
       ]
-    },
-    {
-      "icon": "next",
-      "name": "Next.js",
-      "level": "Avanzado",
-      "keywords": [
-        "Desarrollo Web", "Frontend", "React Framework", "SSR", "Static Generation"
-      ]
-    },
-    {
-      "name": "React",
-      "icon": "react",
-      "level": "Avanzado",
-      "keywords": [
-        "Desarrollo Web", "Frontend", "JavaScript Library", "UI"
-      ]
     }
   ],
   "languages": [
@@ -208,17 +150,8 @@
       "fluency": "Advanced"
     }
   ],
-  "interests": [{
-    "name": "Wildlife",
-    "keywords": [
-      "Ferrets",
-      "Unicorns"
-    ]
-  }],
-  "references": [{
-    "name": "Jane Doe",
-    "reference": "Reference…"
-  }],
+  "interests": [],
+  "references": [],
   "projects": [
     {
       "name": "mars.codes",
