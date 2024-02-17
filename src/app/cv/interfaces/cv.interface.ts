@@ -1,4 +1,6 @@
 export type Network = 'x' | 'linkedin' | 'github' | 'mail' | 'phone';
+export type SkillsNames = 'css' | 'git' | 'html' | 'javaScript' | 'next' | 'node' | 'react' | 'mySql' | 'tailwind' | 'typeScript';
+
 
 export interface Cv {
   basics: Basics;
@@ -100,6 +102,7 @@ export interface Reference {
 
 export interface Skill {
   name: string;
+  icon:SkillsNames;
   level: Level;
   keywords: string[];
 }

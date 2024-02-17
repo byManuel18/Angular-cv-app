@@ -1,14 +1,16 @@
 @if(sectionData){
   <section>
     <h2>{{sectionData.title}}</h2>
-    <ul>
-
-      @for( article of sectionData.articles; track $index){
-        <li>
-          <cv-article [articleData]="article" />
-        </li>
-      }
-    </ul>
+    @if ( sectionData.articles.length > 0 ) {
+      <ul>
+        @for( article of sectionData.articles; track $index){
+          <li>
+            <cv-article [articleData]="article" />
+          </li>
+        }
+      </ul>
+    }
+    <ng-content></ng-content>
   </section>
 }
 

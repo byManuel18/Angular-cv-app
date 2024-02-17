@@ -7,6 +7,16 @@
     @for (section of _sectionsCV(); track $index) {
       <cv-section [sectionData]="section"/>
     }
+
+    @if(_skillsCV()){
+      <cv-section [sectionData]="_skillsCV()!">
+        <ul>
+          @for (skill of _cvToShow()!.skills; track $index) {
+            <li><shared-chip [icon]="skill.icon" [title]="skill.name"/></li>
+          }
+        </ul>
+      </cv-section>
+    }
   </main>
 
   @if(!printService.isPrint()){

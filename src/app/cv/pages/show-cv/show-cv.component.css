@@ -16,3 +16,9 @@ section {
   justify-content: center;
   align-items: center;
 }
+
+ul {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}

@@ -34,6 +34,14 @@ export class ShowCvComponent {
     return this.formatCvArticles(this._cvToShow())
   });
 
+  _skillsCV = computed<CvSection | null>(()=> {
+    if(!this._cvToShow()){
+      return null;
+    }
+
+    return this.formatSkillsSection(this._cvToShow()!);
+  })
+
   getCv(param: string = ''): Observable<Cv | null> {
     if (param === 'myCV') {
       return this.cvService.getMyCv();
@@ -95,5 +103,14 @@ export class ShowCvComponent {
     });
 
     return sections;
+  }
+
+  formatSkillsSection(cv: Cv): CvSection {
+    const sectionSkills: CvSection = {
+      title: 'Habilidades',
+      articles: []
+    }
+
+    return sectionSkills;
   }
 }

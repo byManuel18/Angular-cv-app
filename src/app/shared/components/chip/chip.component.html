@@ -1,5 +1,7 @@
 
 <div>
-  <ng-container [ngComponentOutlet]="getIconComponent(icon)" [ngComponentOutletInputs]="{ color: '#000' }"></ng-container>
+  @if(icon){
+    <ng-container [ngComponentOutlet]="getIconComponent(icon)" [ngComponentOutletInputs]="{ color: '#000' }"></ng-container>
+  }
   <span>{{title}}</span>
 </div>
