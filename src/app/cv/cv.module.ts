@@ -13,6 +13,10 @@ import { ShowCvComponent } from './pages/show-cv/show-cv.component';
 import { GithubIconComponent, WorldMapIconComponent } from '../shared/icons';
 import { ChipComponent } from '../shared/components/chip/chip.component';
 import { CvCardComponent } from './components/cvCard/cvCard.component';
+import { CreateCvComponent } from './pages/create-cv/create-cv.component';
+import { InputFileComponent } from '../shared/components/input-file/input-file.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputComponent } from '../shared/components/input/input.component';
 
 
 @NgModule({
@@ -24,14 +28,18 @@ import { CvCardComponent } from './components/cvCard/cvCard.component';
     LayoutPageComponent,
     PersonalInfoComponent,
     ShowCvComponent,
+    CreateCvComponent
   ],
   imports: [
     CommonModule,
     CvRoutingModule,
+    ReactiveFormsModule,
     ChipComponent,
     IconLinkComponent,
     GithubIconComponent,
-    WorldMapIconComponent
+    WorldMapIconComponent,
+    InputFileComponent,
+    InputComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

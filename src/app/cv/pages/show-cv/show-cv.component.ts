@@ -112,6 +112,7 @@ export class ShowCvComponent {
   }
 
   formatSkillsSection(cv: Cv): CvSection {
+
     const sectionSkills: CvSection = {
       title: 'Habilidades',
       articles: []
