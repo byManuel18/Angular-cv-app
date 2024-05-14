@@ -80,7 +80,10 @@ export class ShowCvComponent {
           icon: this.renderComponentAsString(IconPrintComponent),
           section: 'Acciones',
           handler: () => {
-            window.print();
+            this.printService.setPrint();
+            setTimeout(()=>{
+              window.print();
+            },100);
           },
         }
       )

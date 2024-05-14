@@ -30,6 +30,10 @@ export class PrintService {
 
   }
 
+  setPrint(){
+    this._isPrint.set(true);
+  }
+
   stopListenners() {
     this._isPrint.set(false);
     this.$afterPrint?.unsubscribe();
