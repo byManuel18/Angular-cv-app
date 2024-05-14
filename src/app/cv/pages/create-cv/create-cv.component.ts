@@ -33,11 +33,28 @@ export class CreateCvComponent {
   }
 
 
-  onChangeFile(event: FileList){
+  async onChangeFile(event: FileList){
     console.log(event);
+    console.log(await this.fileToBase64(event[0]));
   }
 
   getControlName(keyControl: keyof typeof ControlNames){
     return ControlNames[keyControl];
+  }
+
+  fileToBase64(file: File) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsDataURL(file);
+    });
   }
 }

@@ -29,3 +29,12 @@ ul {
   gap: 1rem;
   margin-inline: -16px;
 }
+
+.hidden{
+  display: none;
+}
+
+ninja-keys::part(ninja-action){
+  gap: 5px;
+}
+

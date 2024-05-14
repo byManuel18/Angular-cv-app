@@ -1,15 +1,32 @@
-import { Component, inject, computed, effect } from '@angular/core';
+import {
+  Component,
+  inject,
+  computed,
+  effect,
+  ViewChild,
+  ElementRef,
+  ViewContainerRef,
+  Type,
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 
-import 'ninja-keys';
+import { TitleCasePipe } from '@angular/common';
 
+import 'ninja-keys';
+import { NinjaKeys } from 'ninja-keys';
+
+import { INinjaAction } from 'ninja-keys/dist/interfaces/ininja-action';
 import { PrintService } from '../../../shared/services/print.service';
 import { CvService } from '../../services/cv.service';
 
+import { IconsMap } from '../../../shared/icons/mapIcons';
+
 import { Cv } from '../../interfaces/cv.interface';
 import { CvSection } from '../../interfaces/cv-section.interface';
+import { IconPrintComponent } from '../../../shared/icons/print.component';
+import { Utils } from '../../../shared/utils/utils';
 
 @Component({
   selector: 'show-cv',
@@ -18,8 +35,15 @@ import { CvSection } from '../../interfaces/cv-section.interface';
 })
 export class ShowCvComponent {
   private activedRouter = inject(ActivatedRoute);
+
+  private viewContainerRef = inject(ViewContainerRef);
+
   private cvService = inject(CvService);
+  private titleCase = inject(TitleCasePipe);
+
   printService = inject(PrintService);
+
+  @ViewChild('ninjaKeys') ninjaKeys?: ElementRef;
 
   _cvToShow = toSignal<Cv | null>(
     this.activedRouter.params.pipe(
@@ -31,22 +55,53 @@ export class ShowCvComponent {
   );
 
   _sectionsCV = computed<CvSection[]>(() => {
-    return this.formatCvArticles(this._cvToShow())
+    return this.formatCvArticles(this._cvToShow());
   });
 
-  _skillsCV = computed<CvSection | null>(()=> {
-    if(!this._cvToShow()){
+  _skillsCV = computed<CvSection | null>(() => {
+    if (!this._cvToShow()) {
       return null;
     }
 
     return this.formatSkillsSection(this._cvToShow()!);
-  })
+  });
 
-  private titlePageEffect = effect(() => {
-    if(this._cvToShow()) {
-      document.title= `CV de ${this._cvToShow()?.basics.name}`
+  titleKeysEffect = effect(() => {
+    if (this._cvToShow()) {
+      document.title = `CV de ${this._cvToShow()?.basics.name}`;
+      const nimja = this.ninjaKeys?.nativeElement as NinjaKeys;
+      const keys: INinjaAction[] = [];
+      keys.push(
+        {
+          id: 'Imprimir',
+          title: 'Imprimir',
+          hotkey: 'ctrl+P',
+          icon: this.renderComponentAsString(IconPrintComponent),
+          section: 'Acciones',
+          handler: () => {
+            window.print();
+          },
+        }
+      )
+
+      this._cvToShow()!.basics.profiles.forEach((profile) => {
+        keys.push({
+          id: profile.network,
+          title: 'Visitar ' + this.titleCase.transform(profile.network),
+          hotkey: 'ctrl+' + profile.network.charAt(0),
+          icon: this.renderComponentAsString(IconsMap[profile.network]),
+          section: 'Social',
+          handler: () => {
+            window.open(profile.url);
+          },
+        });
+      });
+
+      nimja.data = keys;
     }
   });
+
+  constructor() {}
 
   getCv(param: string = ''): Observable<Cv | null> {
     if (param === 'myCV') {
@@ -87,6 +142,7 @@ export class ShowCvComponent {
             .join(' - '),
           text: work.summary,
           url: work.url,
+          highlights: work.highlights,
         })),
       ],
     });
@@ -108,17 +164,31 @@ export class ShowCvComponent {
       ],
     });
 
+    sections.push({
+      title: 'Certificados',
+      articles: [
+        ...cv.certificates.map((certificate) => ({
+          title: certificate.name,
+          subTitle: certificate.issuer,
+          time: certificate.date,
+          url: certificate.url,
+        })),
+      ],
+    });
+
     return sections;
   }
 
   formatSkillsSection(cv: Cv): CvSection {
-
     const sectionSkills: CvSection = {
       title: 'Habilidades',
-      articles: []
-    }
+      articles: [],
+    };
 
     return sectionSkills;
   }
 
+  renderComponentAsString<T>(component: Type<T>): string {
+    return Utils.getStringFromComponente(this.viewContainerRef,component);
+  }
 }

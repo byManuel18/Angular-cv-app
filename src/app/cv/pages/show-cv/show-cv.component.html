@@ -28,7 +28,6 @@
   </main>
 
   @if(!printService.isPrint()){
-    <ninja-keys openHotkey="ctrl+K" ></ninja-keys>
     <cv-footer>
       <kbd>Ctrl</kbd> + <kbd>K</kbd> parar abrir la Paleta de Comandos.
     </cv-footer>
@@ -40,3 +39,4 @@
   </section>
 }
 
+<ninja-keys placeholder="Buscar Comando..." hideBreadcrumbs openHotkey="ctrl+K" #ninjaKeys [ngClass]="{'hidden': printService.isPrint() }"></ninja-keys>

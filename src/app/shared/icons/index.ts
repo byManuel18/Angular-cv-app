@@ -1,3 +1,6 @@
+export { IconIonicComponent } from './ionicIcon.component';
+export { IconAngularComponent } from './angularIcon.component';
+export { IconPrintComponent } from './print.component';
 export { CsscIconComponent } from "./cssIcon.component";
 export { GithubIconComponent } from "./githubIcon.component";
 export { GitIconComponent } from "./gitIcon.component";
@@ -14,3 +17,4 @@ export { TailwindIconComponent } from "./tailwindIcon.component";
 export { TypeIconComponent } from "./typeIcon.component";
 export { WorldMapIconComponent } from "./worldMapIcon.component";
 export { XIconComponent } from "./xIcon.component";
+

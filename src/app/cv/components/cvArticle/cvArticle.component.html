@@ -15,6 +15,15 @@
       <p>
         {{articleData.text}}
       </p>
+
+      @if(articleData.highlights){
+        <section class="section-highlight">
+          @for (highlight of articleData.highlights; track $index) {
+            <shared-chip [title]="highlight"/>
+          }
+        </section>
+      }
     </footer>
   </article>
 }
+

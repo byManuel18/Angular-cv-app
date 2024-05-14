@@ -17,5 +17,7 @@ export const IconsMap: Record< Network | SkillsNames , any> = {
   'react': Icons.ReactIconComponent,
   'typeScript': Icons.TypeIconComponent,
   'tailwind': Icons.TailwindIconComponent,
+  'Angular': Icons.IconAngularComponent,
+  'Ionic': Icons.IconIonicComponent
 
 }

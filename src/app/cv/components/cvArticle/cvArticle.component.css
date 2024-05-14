@@ -31,3 +31,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.section-highlight{
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+

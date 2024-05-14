@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
-import { Observable, tap, delay} from 'rxjs';
+import { Observable, finalize} from 'rxjs';
 import { Cv } from '../interfaces/cv.interface';
 import { SpinnerService } from '../../shared/services/spinner.service';
 
@@ -18,9 +18,7 @@ export class CvService {
   getMyCv(): Observable<Cv>{
     this.spinnerService.showSpinner();
     return this.http.get<Cv>('assets/data/myCV.json').pipe(
-      tap(()=>{
-        this.spinnerService.closeSpinner();
-      })
+      finalize(()=>this.spinnerService.closeSpinner())
     );
   }
 }

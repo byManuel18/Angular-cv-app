@@ -1,5 +1,5 @@
 export type Network = 'x' | 'linkedin' | 'github' | 'mail' | 'phone';
-export type SkillsNames = 'css' | 'git' | 'html' | 'javaScript' | 'next' | 'node' | 'react' | 'mySql' | 'tailwind' | 'typeScript';
+export type SkillsNames = 'css' | 'git' | 'html' | 'javaScript' | 'next' | 'node' | 'react' | 'mySql' | 'tailwind' | 'typeScript' | 'Angular' | 'Ionic';
 
 
 export interface Cv {

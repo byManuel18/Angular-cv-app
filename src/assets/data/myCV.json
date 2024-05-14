@@ -2,11 +2,11 @@
   "basics": {
     "name": "Antonio Manuel Guerrero Trujillo",
     "label": "Full Stack Developer",
-    "image": "assets/imgs/myImg.jpg",
+    "image": "https://media.licdn.com/dms/image/C4E03AQGBREeg-2JX7A/profile-displayphoto-shrink_800_800/0/1655065710344?e=1721260800&v=beta&t=Nyyk3zNrqpsTE4xegbyDyyaGWUC2HQu2slD0d2PcAfk",
     "email": "antoniomanu533@gmail.com",
     "phone": "+34 618866651",
     "url": "",
-    "summary": "+15 años de experiencia como Desarrollador Web. Actualmente soy Creador de Contenido y Divulgador sobre Programación. Vivo en Barcelona, España. He trabajado en diferentes entornos: desde acelerar el desarrollo de start-ups hasta liderando equipos de empresas multinacionales.",
+    "summary": "Soy un apasionado desarrollador web con sede en Córdoba, con tres años de experiencia especializada en Angular e Ionic. Mi pasión por la tecnología y el diseño web me impulsa a buscar constantemente soluciones innovadoras y a mantenerme al tanto de las últimas tendencias en desarrollo. Soy un colaborador comprometido, con habilidades para trabajar tanto de forma independiente como en equipo, y estoy siempre dispuesto a asumir nuevos desafíos y aprender de ellos.",
     "location": {
       "address": "",
       "postalCode": "14014",
@@ -34,13 +34,14 @@
       "url": "",
       "startDate": "2021-03-14",
       "endDate": "2021-06-01",
-      "summary": "Streamer de programación más visto en Español en Twitch. +1 millón de seguidores entre todas mis redes sociales. Reconocido por Google, Microsoft y GitHub por mi impacto en la comunidad de desarrolladores.",
+      "summary": "Me encargué de empezar una aplicación web para gestionar datos de usuarios clientes de la empresa con base de datos en Firebase. Sobre todo me centré en la creación de componentes reutilizables como tablas dinámicas.",
       "highlights": [
         "Angular",
         "Angular Material",
         "Firebase",
         "Jira",
-        "Git"
+        "Git",
+        "PrimeNG"
       ]
     },
     {
@@ -49,7 +50,7 @@
       "url": "https://twitch.tv/midudev",
       "startDate": "2021-07-05",
       "endDate": null,
-      "summary": "Lideré una convergencia técnica entre diferentes productos y migramos una arquitectura monolítica a otra más flexible y optimizada. Fomenté buenas prácticas y mejoras en la cultura de rendimiento, además de la entrega rápida de valor a los usuarios.",
+      "summary": "Desarrollador web. Continuo desarrollo y resolución de bug así como refactorización de código y migración de versiones antiguas de Ionic y Angular",
       "highlights": [
         "Angular",
         "Ionic",
@@ -72,7 +73,56 @@
     ]
   }],
   "awards": [],
-  "certificates": [],
+  "certificates": [
+    {
+      "name": "Nest: Desarrollo backend escalable con Node",
+      "issuer": "Udemy",
+      "date": "28/02/2024",
+      "url": "https://www.udemy.com/certificate/UC-98d20cb6-7297-4e3a-bacc-46488965773d/"
+    },
+    {
+      "name": "Angular: De cero a experto 2023",
+      "issuer": "Udemy",
+      "date": "30/12/2023",
+      "url": "https://www.udemy.com/certificate/UC-c998c566-930c-4f0f-86be-dd539820c054/"
+    },
+    {
+      "name": " Legacy: ionic 6: Crear aplicaciones IOS, Android con Angular",
+      "issuer": "Udemy",
+      "date": "28/05/2023",
+      "url": "https://www.udemy.com/certificate/UC-5808343d-b7ca-4f1d-b123-6d3ebf17c204/"
+    },
+    {
+      "name": "REDUX en Angular con NGRX: Desde las bases hasta la práctica",
+      "issuer": "Udemy",
+      "date": "14/04/2022",
+      "url": "https://www.udemy.com/certificate/UC-7ed97ce0-ad60-45ff-937a-64fe87fa77e1/"
+    },
+    {
+      "name": "React: De cero a experto ( Hooks y MERN)",
+      "issuer": "Udemy",
+      "date": " 29/05/2022",
+      "url": "https://www.udemy.com/certificate/UC-51a00190-ad50-447e-a363-02779342543c/"
+    },
+    {
+      "name": "Vue.js: De cero a experto",
+      "issuer": "Udemy",
+      "date": "06/03/2022",
+      "url": "https://www.udemy.com/certificate/UC-e907e45e-ff7b-4499-a6af-6c84e42443d1/"
+    },
+    {
+      "name": "Angular: De cero a experto 2021",
+      "issuer": "Udemy",
+      "date": " 04/08/2021",
+      "url": "https://www.udemy.com/certificate/UC-497f64df-6170-44dc-9bff-c00390ee3af6/"
+    },
+    {
+      "name": "React Native: Aplicaciones nativas para IOS y Android",
+      "issuer": "Udemy",
+      "date": "28/01/2023",
+      "url": "https://www.udemy.com/certificate/UC-131989ad-3bb0-42af-b923-55f04448f90f/"
+    }
+  ],
   "publications": [],
   "skills": [
     {
@@ -81,6 +131,22 @@
       "level": "",
       "keywords": [
         "Desarrollo Web", "Frontend"
+      ]
+    },
+    {
+      "icon": "Angular",
+      "name": "Angular",
+      "level": "",
+      "keywords": [
+        "Desarrollo Web", "Frontend"
+      ]
+    },
+    {
+      "icon": "Ionic",
+      "name": "Ionic",
+      "level": "",
+      "keywords": [
+        "Desarrollo Web", "Frontend", "Android", "IOS"
       ]
     },
     {
@@ -154,66 +220,92 @@
   "references": [],
   "projects": [
     {
-      "name": "mars.codes",
+      "name": "CVCreator",
       "isActive": true,
-      "description": "Historia interactiva con retos de programación para viajar a Marte",
+      "description": "Crea y comparte tu CV minimalista listo para imprimir.",
       "highlights": [
-        "Elige tu propia aventura",
+        "Angular",
         "En desarrollo"
       ],
-      "url": "https://mars.codes"
+      "url": "",
+      "github": "https://github.com/byManuel18/Angular-cv-app"
     },
     {
-      "name": "AdventJS",
+      "name": "RegistroTiendaApp",
+      "isActive": false,
+      "description": "Aplicación Web encargada de gestionar todos los registro de una tienda",
+      "highlights": [
+        "Angular",
+        "Ionic"
+      ],
+      "url": "",
+      "github": "https://github.com/byManuel18/FrontParteRegistroProyectoFinal"
+    },
+    {
+      "name": "ApiRegistroTienda",
+      "isActive": false,
+      "description": "Api dedicada a gestionar toda la aplicación RegistroTiendaApp",
+      "highlights": [
+        "Java",
+        "Spring Boot",
+        "Firebase",
+        "PostgreSQL",
+        "Cloudinary"
+      ],
+      "url": "",
+      "github": "https://github.com/byManuel18/ApiRestfulSpringBootFinal"
+    },
+    {
+      "name": "HealtFitness",
+      "isActive": false,
+      "description": "Aplicación para guardar las calorías y macros diarios.",
+      "highlights": [
+        "Firebase",
+        "Angular",
+        "Ionic"
+      ],
+      "url": "",
+      "github": "https://github.com/byManuel18/HealtFitness/tree/main"
+    },
+    {
+      "name": "Matatena",
+      "isActive": false,
+      "description": "Juego de dados que aparece en el juego Cult Of the Lamb",
+      "highlights": [
+        "JavaScript",
+        "css"
+      ],
+      "url": "https://unique-tarsier-8cfbc4.netlify.app/",
+      "github": "https://github.com/byManuel18/Matatena"
+    },
+    {
+      "name": "CalendarioComponent",
+      "isActive": false,
+      "description": "Componente Angular de un Calendario personalizable. Permite seleccionar una fecha pudiendo configurar un intervalo de inicio y final",
+      "highlights": [
+        "Angular"
+      ],
+      "url": "https://calendario-angular-app.netlify.app/",
+      "github": "https://github.com/byManuel18/Calendario/tree/master"
+    },
+    {
+      "name": "MusicApi",
       "isActive": true,
-      "description": "Retos de programación en JavaScript para cada día de diciembre hasta Navidad",
+      "description": "Api para gestionar una palicación de música por usuarios con autenticación propia.",
       "highlights": [
-        "+1 millón de visitas",
-        "Multidioma",
-        "JavaScript & TypeScript"
+        "En desarrollo",
+        "TypeScript",
+        "Node",
+        "Express",
+        "MongoDB",
+        "Socket.io",
+        "JWT",
+        "RSA Encryption and Decryption",
+        "File Upload",
+        "Env"
       ],
-      "url": "https://adventjs.dev"
-    },
-    {
-      "name": "Codember",
-      "isActive": true,
-      "description": "Juego interactivo de programación con retos y secretos",
-      "highlights": [
-        "+2000 usuarios activos",
-        "Retos para cualquier lenguaje"
-      ],
-      "url": "https://codember.dev"
-    },
-    {
-      "name": "codi.link",
-      "isActive": true,
-      "description": "Playground de código HTML, CSS y JavaScript para compartir",
-      "highlights": [
-        "100k visitas al mes",
-        "Desarrollado por la comunidad"
-      ],
-      "url": "https://codi.link",
-      "github": "https://github.com/midudev/codi.link"
-    },
-    {
-      "name": "Pruebas Técnicas",
-      "isActive": true,
-      "description": "Lista de pruebas técnicas de empresas para practicar programación",
-      "highlights": [
-        "100% gratuito",
-        "+500 soluciones de la comunidad"
-      ],
-      "url": "https://pruebastecnicas.com",
-      "github": "https://github.com/midudev/pruebas-tecnicas"
-    },
-    {
-      "name": "miduConf",
-      "description": "Conferencia de programación en streaming para la comunidad hispanohablante con charlas top",
-      "highlights": [
-        "+15k tickets repartidos",
-        "+50k espectadores en directo"
-      ],
-      "url": "https://miduconf.com"
+      "url": "",
+      "github": "https://github.com/byManuel18/musicBack/tree/develop"
     }
   ]
 }

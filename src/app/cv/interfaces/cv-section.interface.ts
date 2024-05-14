@@ -11,4 +11,5 @@ export interface CvArticle {
   time?: string;
   text?: string;
   url?: string;
+  highlights?: string[],
 }

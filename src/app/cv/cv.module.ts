@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 
 import { CvRoutingModule } from './cv-routing.module';
 
@@ -17,6 +17,7 @@ import { CreateCvComponent } from './pages/create-cv/create-cv.component';
 import { InputFileComponent } from '../shared/components/input-file/input-file.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from '../shared/components/input/input.component';
+import { IconPrintComponent } from '../shared/icons/print.component';
 
 
 @NgModule({
@@ -39,8 +40,10 @@ import { InputComponent } from '../shared/components/input/input.component';
     GithubIconComponent,
     WorldMapIconComponent,
     InputFileComponent,
-    InputComponent
+    InputComponent,
+    IconPrintComponent
   ],
+  providers: [TitleCasePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CvModule { }

@@ -4,7 +4,7 @@
     <header>
       <h3>
         @if(data.url){
-          <a [href]="data.url">{{data.name}}</a>
+          <a [href]="data.url" target="_blank">{{data.name}}</a>
         } @else {
           <span>{{data.name}}</span>
         }
@@ -14,7 +14,7 @@
         }
 
         @if (data.github) {
-          <a [href]="data.github"><icon-github/></a>
+          <a [href]="data.github" target="_blank"><icon-github/></a>
         }
       </h3>
       <p>
