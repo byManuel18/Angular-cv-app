@@ -18,7 +18,7 @@
 
     @if(_skillsCV()){
       <cv-section [sectionData]="_skillsCV()!">
-        <ul>
+        <ul class="justify-center">
           @for (skill of _cvToShow()!.skills; track $index) {
             <li><shared-chip [icon]="skill.icon" [title]="skill.name"/></li>
           }
@@ -29,7 +29,11 @@
 
   @if(!printService.isPrint()){
     <cv-footer>
-      <kbd>Ctrl</kbd> + <kbd>K</kbd> parar abrir la Paleta de Comandos.
+      @if(!deviceService.isMobile()){
+        <kbd>Ctrl</kbd> + <kbd>K</kbd> parar abrir la Paleta de Comandos.
+      }@else {
+        <button (click)="openKeys()">Abrir</button> Paleta de Comandos
+      }
     </cv-footer>
   }
 

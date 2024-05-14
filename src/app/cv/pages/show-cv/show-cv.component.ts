@@ -27,6 +27,7 @@ import { Cv } from '../../interfaces/cv.interface';
 import { CvSection } from '../../interfaces/cv-section.interface';
 import { IconPrintComponent } from '../../../shared/icons/print.component';
 import { Utils } from '../../../shared/utils/utils';
+import { DeviceService } from '../../../shared/services/device.service';
 
 @Component({
   selector: 'show-cv',
@@ -35,11 +36,11 @@ import { Utils } from '../../../shared/utils/utils';
 })
 export class ShowCvComponent {
   private activedRouter = inject(ActivatedRoute);
-
+  private titleCase = inject(TitleCasePipe);
   private viewContainerRef = inject(ViewContainerRef);
 
   private cvService = inject(CvService);
-  private titleCase = inject(TitleCasePipe);
+  deviceService = inject(DeviceService);
 
   printService = inject(PrintService);
 
@@ -188,6 +189,9 @@ export class ShowCvComponent {
     return sectionSkills;
   }
 
+  openKeys(){
+    (this.ninjaKeys?.nativeElement as NinjaKeys).open();
+  }
   renderComponentAsString<T>(component: Type<T>): string {
     return Utils.getStringFromComponente(this.viewContainerRef,component);
   }

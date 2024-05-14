@@ -6,7 +6,7 @@
     "email": "antoniomanu533@gmail.com",
     "phone": "+34 618866651",
     "url": "",
-    "summary": "Soy un apasionado desarrollador web con sede en Córdoba, con tres años de experiencia especializada en Angular e Ionic. Mi pasión por la tecnología y el diseño web me impulsa a buscar constantemente soluciones innovadoras y a mantenerme al tanto de las últimas tendencias en desarrollo. Soy un colaborador comprometido, con habilidades para trabajar tanto de forma independiente como en equipo, y estoy siempre dispuesto a asumir nuevos desafíos y aprender de ellos.",
+    "summary": "Soy un apasionado desarrollador web con residencia en Córdoba, con tres años de experiencia especializada en Angular e Ionic. Mi pasión por la tecnología y el diseño web me impulsa a buscar constantemente soluciones innovadoras y a mantenerme al tanto de las últimas tendencias en desarrollo. Soy un colaborador comprometido, con habilidades para trabajar tanto de forma independiente como en equipo, y estoy siempre dispuesto a asumir nuevos desafíos y aprender de ellos.",
     "location": {
       "address": "",
       "postalCode": "14014",
@@ -233,7 +233,7 @@
     {
       "name": "RegistroTiendaApp",
       "isActive": false,
-      "description": "Aplicación Web encargada de gestionar todos los registro de una tienda",
+      "description": "Aplicación Web encargada de gestionar todos los registros de una tienda",
       "highlights": [
         "Angular",
         "Ionic"
@@ -291,7 +291,7 @@
     {
       "name": "MusicApi",
       "isActive": true,
-      "description": "Api para gestionar una palicación de música por usuarios con autenticación propia.",
+      "description": "Api para gestionar una aplicación de música por usuarios con autenticación propia.",
       "highlights": [
         "En desarrollo",
         "TypeScript",
