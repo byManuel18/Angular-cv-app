@@ -1,9 +1,23 @@
+import { Utils } from './../../../shared/utils/utils';
 import { Component, inject } from '@angular/core';
-import { AsyncValidator, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, Validator, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
-enum ControlNames {
-  Name = 'name'
+export enum ControlNamesPersonalInfo {
+  Name = 'name',
+  Label = 'label',
+  Image = 'image',
+  Email = 'email',
+  Phone = 'phone',
+  Url = 'url',
+  Sumary = 'sumary',
+  PostalCode = 'postalCode',
+  City = 'city',
+  Region = "region"
+}
+
+enum Group {
+  PersonalInfo = 'personalInfo',
 }
 
 @Component({
@@ -18,43 +32,32 @@ export class CreateCvComponent {
 
   fb = inject(FormBuilder);
 
-  controlsErrors: {[key in ControlNames]: { [key: string ]: string}} = {
-    name: {
-      'required': 'Campo Obligatorio',
-      'minlength': 'Mínimo 10 caracteres'
-    }
-  }
-
   constructor(){
 
     this.myForm = this.fb.group({
-      [ControlNames.Name]: this.fb.control('', {validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur'})
+      [Group.PersonalInfo] : this.fb.group({
+        [ControlNamesPersonalInfo.Name]: this.fb.control('', {validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur'}),
+        [ControlNamesPersonalInfo.Label]: this.fb.control('', {validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur'}),
+        [ControlNamesPersonalInfo.Image]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesPersonalInfo.Email]: this.fb.control('', {validators: [Validators.required, Validators.email], updateOn: 'blur'}),
+        [ControlNamesPersonalInfo.Phone]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesPersonalInfo.Sumary]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesPersonalInfo.Url]: this.fb.control('', {validators: [], updateOn: 'blur'}),
+        [ControlNamesPersonalInfo.City]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesPersonalInfo.Region]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesPersonalInfo.PostalCode]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+
+      }),
     });
   }
 
 
   async onChangeFile(event: FileList){
-    console.log(event);
-    console.log(await this.fileToBase64(event[0]));
+    console.log(await Utils.fileToBase64(event[0]));
   }
 
-  getControlName(keyControl: keyof typeof ControlNames){
-    return ControlNames[keyControl];
+  getFormGroup(form: keyof typeof Group): FormGroup{
+    return this.myForm.controls[Group[form]] as FormGroup;
   }
 
-  fileToBase64(file: File) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-
-      reader.onerror = (error) => {
-        reject(error);
-      };
-
-      reader.readAsDataURL(file);
-    });
-  }
 }

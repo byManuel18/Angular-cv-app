@@ -1,2 +1,14 @@
-<shared-input-file (fileChange)="onChangeFile($event)"/>
-<shared-input [formControName]="this.getControlName('Name')" [formGroup]="this.myForm" [label]="'Nombre'" [errorsControl]="controlsErrors.name"/>
+<!-- <shared-input-file (fileChange)="onChangeFile($event)"/>
+<shared-input [formControName]="this.getControlName('Name')" [formGroup]="getFormGroup('PersonalInfo')" [label]="'Nombre'" [errorsControl]="controlsErrors.name"/> -->
+<main>
+  <form [formGroup]="myForm">
+    <swiper-container>
+      <swiper-slide>
+        <cv-personal-form [personalInfoGroup]="this.getFormGroup('PersonalInfo')"/>
+      </swiper-slide>
+      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+    </swiper-container>
+
+  </form>
+</main>

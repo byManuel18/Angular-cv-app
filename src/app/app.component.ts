@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ModalService } from './shared/services/modalService.service';
 import { DeviceService } from './shared/services/device.service';
+import { register } from 'swiper/element/bundle';
+
+register();
 
 @Component({
   selector: 'app-root',

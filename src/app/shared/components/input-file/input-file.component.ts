@@ -25,6 +25,20 @@ export class InputFileComponent{
   onInputChange(event: Event){
     const files = (event.target as HTMLInputElement).files;
     if(files){
+
+    }
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    const files = event.dataTransfer?.files;
+    if (files) {
       this.fileChange.emit(files);
     }
   }

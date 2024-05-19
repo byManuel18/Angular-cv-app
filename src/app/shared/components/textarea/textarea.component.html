@@ -1,0 +1,9 @@
+<div class="input-group" [formGroup]="formGroup">
+  <textarea type="text" [name]="formControName" (input)="changeTexarea($event)" autocomplete="off" class="input" [ngClass]="{ 'valid': isValid, 'inValid': isInvalid, 'hasValue': hasValue }" [formControlName]="formControName"></textarea>
+  <label class="user-label">{{label}}</label>
+  @if(errors){
+    <div class="errorDiv">
+      {{errors}}
+    </div>
+  }
+</div>

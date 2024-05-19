@@ -1,0 +1,29 @@
+@if(personalInfoGroup){
+  <fieldset [formGroup]="personalInfoGroup!">
+    @if (!personalInfoGroup.controls[getControlName('Image')].value) {
+      <shared-input-file [title]="'Foto Personal'" (fileChange)="changeImg($event)"/>
+    } @else {
+      <figure>
+        <img [src]="personalInfoGroup.controls[getControlName('Image')].value" alt="Foto Personal">
+      </figure>
+    }
+
+    <shared-input label="Nombre" [errorsControl]="controlsErrors.name" [formControName]="this.getControlName('Name')" [formGroup]="personalInfoGroup" />
+    <shared-input label="Titular" [errorsControl]="controlsErrors.label" [formControName]="this.getControlName('Label')" [formGroup]="personalInfoGroup" />
+
+    <section class="location">
+      <shared-input label="Ciudad" [errorsControl]="controlsErrors.city" [formControName]="this.getControlName('City')" [formGroup]="personalInfoGroup" />
+      <shared-input label="Código Postal" [errorsControl]="controlsErrors.postalCode" [formControName]="this.getControlName('PostalCode')" [formGroup]="personalInfoGroup" />
+      <shared-input label="Región" [errorsControl]="controlsErrors.region" [formControName]="this.getControlName('Region')" [formGroup]="personalInfoGroup" />
+    </section>
+
+    <shared-input label="Teléfono" [errorsControl]="controlsErrors.phone" [formControName]="this.getControlName('Phone')" [formGroup]="personalInfoGroup" />
+    <shared-input label="Correo" [errorsControl]="controlsErrors.email" [formControName]="this.getControlName('Email')" [formGroup]="personalInfoGroup" />
+    <shared-textarea label="Sobre mí" [errorsControl]="controlsErrors.sumary" [formControName]="this.getControlName('Sumary')" [formGroup]="personalInfoGroup" />
+
+
+    <button [disabled]="personalInfoGroup.invalid">Siguiente</button>
+
+
+  </fieldset>
+}

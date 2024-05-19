@@ -1,4 +1,4 @@
-<fieldset class="input-group" [formGroup]="formGroup">
+<div class="input-group" [formGroup]="formGroup">
   <input type="text" name="text" autocomplete="off" class="input" [ngClass]="{ 'valid': isValid, 'inValid': isInvalid, 'hasValue': hasValue }" [formControlName]="formControName">
   <label class="user-label">{{label}}</label>
   @if(errors){
@@ -6,4 +6,4 @@
       {{errors}}
     </div>
   }
-</fieldset>
+</div>

@@ -18,6 +18,8 @@ import { InputFileComponent } from '../shared/components/input-file/input-file.c
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from '../shared/components/input/input.component';
 import { IconPrintComponent } from '../shared/icons/print.component';
+import { PersonalFormComponent } from './components/personalForm/personalForm.component';
+import { TextareaComponent } from '../shared/components/textarea/textareacomponent';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { IconPrintComponent } from '../shared/icons/print.component';
     LayoutPageComponent,
     PersonalInfoComponent,
     ShowCvComponent,
-    CreateCvComponent
+    CreateCvComponent,
+    PersonalFormComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +44,9 @@ import { IconPrintComponent } from '../shared/icons/print.component';
     WorldMapIconComponent,
     InputFileComponent,
     InputComponent,
-    IconPrintComponent
+    IconPrintComponent,
+    TextareaComponent
+
   ],
   providers: [TitleCasePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
