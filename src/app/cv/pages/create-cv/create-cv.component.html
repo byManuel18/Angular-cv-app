@@ -5,8 +5,11 @@
     <swiper-container>
       <swiper-slide>
         <cv-personal-form [personalInfoGroup]="this.getFormGroup('PersonalInfo')"/>
+        <shared-select [dataSelect]="selectNetworkArray" [label]="'label'" [optionKey]="'network'" [labelSelect]="'Network'" ></shared-select>
       </swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>
+        <!-- <shared-select []></shared-select> -->
+      </swiper-slide>
       <swiper-slide>Slide 3</swiper-slide>
     </swiper-container>
 

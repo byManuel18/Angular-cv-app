@@ -43,6 +43,9 @@ export class PersonalFormComponent {
     },
     postalCode:{
 
+    },
+    profiles:{
+
     }
   }
 

@@ -1,6 +1,8 @@
 import { Utils } from './../../../shared/utils/utils';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Network } from '../../interfaces/cv.interface';
+import { SelectNetworkData } from '../../data/selectNetwork';
 
 
 export enum ControlNamesPersonalInfo {
@@ -13,7 +15,8 @@ export enum ControlNamesPersonalInfo {
   Sumary = 'sumary',
   PostalCode = 'postalCode',
   City = 'city',
-  Region = "region"
+  Region = "region",
+  Profiles = 'profiles'
 }
 
 enum Group {
@@ -32,6 +35,13 @@ export class CreateCvComponent {
 
   fb = inject(FormBuilder);
 
+
+  selectNetworkArray = (Object.keys(SelectNetworkData) as Network[]).map((key) => ({
+    network: key,
+    label: SelectNetworkData[key]?.label
+  }));
+
+
   constructor(){
 
     this.myForm = this.fb.group({
@@ -46,6 +56,11 @@ export class CreateCvComponent {
         [ControlNamesPersonalInfo.City]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
         [ControlNamesPersonalInfo.Region]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
         [ControlNamesPersonalInfo.PostalCode]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesPersonalInfo.Profiles]: this.fb.array([
+          this.fb.group({
+            // name: this.fb.control('', {validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur'}),
+          })
+        ])
 
       }),
     });

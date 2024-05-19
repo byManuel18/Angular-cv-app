@@ -1,0 +1,25 @@
+@if(formGroup && formControName){
+  <div class="input-group" [formGroup]="formGroup">
+    <select class="input" [formControlName]="formControName" [ngClass]="{ 'valid': isValid, 'inValid': isInvalid, 'hasValue': hasValue }">
+      @for(selectOption of dataSelect; track $index){
+        <option [value]="selectOption[optionKey]">{{selectOption[label]}}</option>
+      }
+    </select>
+    <label class="user-label">{{label}}</label>
+    @if(errors){
+      <div class="errorDiv">
+        {{errors}}
+      </div>
+    }
+  </div>
+}@else{
+  <div class="input-group">
+    <select class="input noForm">
+      <option value=""></option>
+      @for(selectOption of dataSelect; track $index){
+        <option [value]="selectOption[optionKey]">{{selectOption[label]}}</option>
+      }
+    </select>
+    <label class="user-label">{{labelSelect}}</label>
+  </div>
+}

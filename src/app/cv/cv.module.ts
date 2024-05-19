@@ -20,6 +20,7 @@ import { InputComponent } from '../shared/components/input/input.component';
 import { IconPrintComponent } from '../shared/icons/print.component';
 import { PersonalFormComponent } from './components/personalForm/personalForm.component';
 import { TextareaComponent } from '../shared/components/textarea/textareacomponent';
+import { SelectComponent } from '../shared/components/select/select.component';
 
 
 @NgModule({
@@ -45,8 +46,8 @@ import { TextareaComponent } from '../shared/components/textarea/textareacompone
     InputFileComponent,
     InputComponent,
     IconPrintComponent,
-    TextareaComponent
-
+    TextareaComponent,
+    SelectComponent
   ],
   providers: [TitleCasePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
