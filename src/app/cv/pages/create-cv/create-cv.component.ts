@@ -1,8 +1,9 @@
 import { Utils } from './../../../shared/utils/utils';
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Network } from '../../interfaces/cv.interface';
 import { SelectNetworkData } from '../../data/selectNetwork';
+import { Subscription } from 'rxjs';
 
 
 export enum ControlNamesPersonalInfo {
@@ -23,17 +24,21 @@ enum Group {
   PersonalInfo = 'personalInfo',
 }
 
+const LOCAL_STORAGE_FORM: string = 'CV-FORM';
+
 @Component({
   selector: 'create-cv',
   templateUrl: './create-cv.component.html',
   styleUrl: './create-cv.component.css',
 })
-export class CreateCvComponent {
+export class CreateCvComponent implements OnInit, OnDestroy{
 
 
   myForm : FormGroup;
 
   fb = inject(FormBuilder);
+
+  $formSubscription?: Subscription;
 
 
   selectNetworkArray = (Object.keys(SelectNetworkData) as Network[]).map((key) => ({
@@ -64,6 +69,17 @@ export class CreateCvComponent {
 
       }),
     });
+
+    const savedFrom = localStorage.getItem(LOCAL_STORAGE_FORM);
+    if(savedFrom){
+      this.myForm.setValue(JSON.parse(savedFrom));
+    }
+  }
+
+  ngOnInit(): void {
+    this.$formSubscription = this.myForm.valueChanges.subscribe(()=>{
+      localStorage.setItem(LOCAL_STORAGE_FORM, JSON.stringify(this.myForm.getRawValue()));
+    });
   }
 
 
@@ -74,5 +90,12 @@ export class CreateCvComponent {
   getFormGroup(form: keyof typeof Group): FormGroup{
     return this.myForm.controls[Group[form]] as FormGroup;
   }
+
+  ngOnDestroy(): void {
+   if(this.$formSubscription){
+    this.$formSubscription.unsubscribe();
+   }
+  }
+
 
 }
