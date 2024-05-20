@@ -25,7 +25,7 @@ export class InputFileComponent{
   onInputChange(event: Event){
     const files = (event.target as HTMLInputElement).files;
     if(files){
-
+      this.fileChange.emit(files);
     }
   }
 
