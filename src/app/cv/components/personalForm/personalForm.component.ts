@@ -64,4 +64,10 @@ export class PersonalFormComponent {
     return ControlNamesPersonalInfo[keyControl];
   }
 
+  goNext(){
+    if(this.personalInfoGroup){
+      Utils.marAllAsDirty(this.personalInfoGroup)
+      this.personalInfoGroup?.markAllAsTouched();
+    }
+  }
 }

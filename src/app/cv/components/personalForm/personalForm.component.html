@@ -22,7 +22,7 @@
     <shared-textarea label="Sobre mí" [errorsControl]="controlsErrors.sumary" [formControName]="this.getControlName('Sumary')" [formGroup]="personalInfoGroup" />
 
 
-    <button [disabled]="personalInfoGroup.invalid">Siguiente</button>
+    <button  (click)="goNext()">Siguiente</button>
 
 
   </fieldset>

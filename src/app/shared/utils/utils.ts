@@ -1,4 +1,5 @@
 import { Type, ViewContainerRef } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 
 export class Utils{
@@ -25,6 +26,17 @@ export class Utils{
       };
 
       reader.readAsDataURL(file);
+    });
+  }
+
+  public static marAllAsDirty(formGroup: FormGroup){
+    Object.keys(formGroup.controls).forEach(controlKey =>{
+      const control = formGroup.controls[controlKey];
+      if(control instanceof FormGroup){
+        Utils.marAllAsDirty(control);
+      }else{
+        control.markAsDirty();
+      }
     });
   }
 
