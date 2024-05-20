@@ -11,7 +11,7 @@ import {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './input.component.html',
-  styleUrl: './input.component.css',
+  styleUrl: '../../common/forms/formInputs.css',
 })
 export class InputComponent implements OnInit {
   @Input() formGroup!: FormGroup;

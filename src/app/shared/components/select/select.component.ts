@@ -11,7 +11,7 @@ import {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './select.component.html',
-  styleUrl: './select.component.css',
+  styleUrl: '../../common/forms/formInputs.css',
 })
 export class SelectComponent<T> implements OnInit {
   @Input() formGroup?: FormGroup;

@@ -1,0 +1,86 @@
+:host {
+  width: 100%;
+  display: block;
+
+  --color-valid: #00ff00;
+  --color-invalid: #ff0000;
+  --color-focus: #1a73e8;
+  --color-normal: #000;
+  --border-radius-input: 0.5rem;
+  --border-width: 1.5px;
+  --border: solid;
+}
+
+.input-group {
+  position: relative;
+  border: none;
+ }
+
+ .input {
+  border: var(--border) var(--border-width) var(--color-normal);
+  border-radius: var(--border-radius-input);
+  background: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  color: var(--color-normal);
+  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+  width: 100%;
+ }
+
+ .user-label {
+  position: absolute;
+  left: 30px;
+  color: var(--color-normal);
+  pointer-events: none;
+  transform: translateY(0.8rem);
+  transition: 150ms cubic-bezier(0.4,0,0.2,1);
+ }
+
+ .input:focus {
+  outline: none;
+  border: 1.5px solid var(--color-focus);
+ }
+
+ .input:focus ~ label, .input.valid ~ label, .input.invalid ~ label, .input.hasValue ~ label  {
+  transform: translateY(-50%) scale(0.8);
+  background-color: #fff;
+  padding: 0 .2em;
+
+}
+
+.input:focus ~ label {
+  color: var(--color-focus);
+}
+
+.input.inValid:not(:focus) ~ label {
+  color: var(--color-invalid);
+}
+
+.input.valid:not(:focus) ~ label {
+  color: var(--color-valid);
+}
+
+.input.valid:not(:focus) {
+  outline: none;
+  border-color: var(--color-valid);
+}
+
+.input.inValid:not(:focus) {
+  outline: none;
+  border-color: var(--color-invalid);
+}
+
+.errorDiv {
+  background-color: var(--color-invalid);
+  color: #fff;
+  padding: 5px;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+.noForm:has(> option:checked:not([value=""])) ~ label {
+  transform: translateY(-50%) scale(0.8);
+  background-color: #fff;
+  padding: 0 .2em;
+}

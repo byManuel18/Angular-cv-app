@@ -11,7 +11,7 @@ import {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './textarea.component.html',
-  styleUrl: './textarea.component.css',
+  styleUrl: '../../common/forms/formInputs.css',
 })
 export class TextareaComponent implements OnInit {
   @Input() formGroup!: FormGroup;
