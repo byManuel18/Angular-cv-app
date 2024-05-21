@@ -1,3 +1,15 @@
 :host{
-  height: 16px;
+  --width: 16px;
+  --color: #777;
+  width: var(--width);
+  height: auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+svg {
+  width: 100%;
+  color: var(--color);
+  height: auto;
 }

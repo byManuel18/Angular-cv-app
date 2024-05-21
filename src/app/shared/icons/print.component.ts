@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'icon-print',
@@ -11,8 +11,6 @@ import { Component, Input } from '@angular/core';
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      width="16"
-      height="16"
     >
       <path
         stroke-linecap="round"
@@ -24,5 +22,4 @@ import { Component, Input } from '@angular/core';
   styleUrl: './icons.css',
 })
 export class IconPrintComponent {
-  @Input() color = 'currentColor';
 }

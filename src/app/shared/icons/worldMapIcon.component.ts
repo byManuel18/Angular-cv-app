@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'icon-worldmap',
@@ -8,11 +8,9 @@ import { Component, Input } from '@angular/core';
   `
       <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="12"
-      height="12"
       viewBox="0 0 24 24"
       fill="none"
-      [attr.stroke]="color"
+      stroke="currentColor"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -25,6 +23,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './icons.css'
 })
 export class WorldMapIconComponent {
-  @Input() color = 'currentColor';
 
  }

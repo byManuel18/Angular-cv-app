@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'icon-angular',
@@ -8,11 +8,9 @@ import { Component, Input } from '@angular/core';
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="icon icon-tabler icon-tabler-brand-angular"
-      width="16"
-      height="16"
       viewBox="0 0 24 24"
       stroke-width="1.5"
-      [attr.stroke]="color"
+      stroke="currentColor"
       fill="none"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -28,5 +26,4 @@ import { Component, Input } from '@angular/core';
   styleUrl: './icons.css',
 })
 export class IconAngularComponent {
-  @Input() color = 'currentColor';
 }

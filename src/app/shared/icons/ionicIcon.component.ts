@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'icon-ionic',
@@ -7,10 +7,9 @@ import { Component, Input } from '@angular/core';
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      [attr.stroke]="color"
+      stroke="currentColor"
       viewBox="0 0 512 512"
+      fill="currentColor"
     >
       <path
         d="M256 153.9A102.1 102.1 0 10358.1 256 102.23 102.23 0 00256 153.9z"
@@ -24,5 +23,4 @@ import { Component, Input } from '@angular/core';
   styleUrl: './icons.css',
 })
 export class IconIonicComponent {
-  @Input() color = 'currentColor';
 }

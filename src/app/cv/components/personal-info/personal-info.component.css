@@ -39,3 +39,10 @@ footer {
   font-size: 0.65rem;
 }
 
+.adress{
+  display: flex;
+  gap: 5px;
+  align-items: self-end;
+}
+
+
