@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   AbstractControl,
   FormGroup,
@@ -23,6 +23,8 @@ export class SelectComponent<T> implements OnInit {
   @Input() dataSelect: T[] = [];
   @Input() label!: keyof T;
   @Input() optionKey!: keyof T;
+
+  @Output() selectChange: EventEmitter<T | null > = new EventEmitter<T | null>();
 
   private control?: AbstractControl | null;
 
@@ -71,5 +73,15 @@ export class SelectComponent<T> implements OnInit {
     }
 
     return null;
+  }
+
+  changeSelect(event: Event){
+    const value = ( event.target as HTMLSelectElement ).value;
+    if(value && value.length > 0){
+      const objFind: T |  null = this.dataSelect.find((element=> element[this.optionKey] === value)) || null;
+      this.selectChange.emit(objFind);
+    }else{
+      this.selectChange.emit(null);
+    }
   }
 }

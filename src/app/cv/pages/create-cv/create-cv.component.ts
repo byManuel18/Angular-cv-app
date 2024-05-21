@@ -97,5 +97,12 @@ export class CreateCvComponent implements OnInit, OnDestroy{
    }
   }
 
+  changeSelect(event: {
+    network: Network,
+    label: string | undefined
+  } | null){
+    console.log(event);
+  }
+
 
 }

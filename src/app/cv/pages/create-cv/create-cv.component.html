@@ -5,7 +5,7 @@
         <cv-personal-form [personalInfoGroup]="this.getFormGroup('PersonalInfo')"/>
       </swiper-slide>
       <swiper-slide>
-        <shared-select [dataSelect]="selectNetworkArray" [label]="'label'" [optionKey]="'network'" [labelSelect]="'Network'" ></shared-select>
+        <shared-select [dataSelect]="selectNetworkArray" [label]="'label'" [optionKey]="'network'" [labelSelect]="'Network'" (selectChange)="changeSelect($event)"></shared-select>
 
       </swiper-slide>
       <swiper-slide>Slide 3</swiper-slide>

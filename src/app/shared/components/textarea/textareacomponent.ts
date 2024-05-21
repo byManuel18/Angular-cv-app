@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormGroup,
@@ -13,15 +13,25 @@ import {
   templateUrl: './textarea.component.html',
   styleUrl: '../../common/forms/formInputs.css',
 })
-export class TextareaComponent implements OnInit {
+export class TextareaComponent implements OnInit, AfterViewInit {
   @Input() formGroup!: FormGroup;
   @Input() formControName!: string;
   @Input() label?: string;
   @Input() errorsControl?: { [key: string]: string };
 
+  @ViewChild('texarea') texarea?: ElementRef;
+
   private control?: AbstractControl | null;
 
   constructor() {}
+
+  ngAfterViewInit(): void {
+   if(this.texarea){
+    const nativeElementArea = this.texarea.nativeElement;
+    nativeElementArea.style.height = 'auto';
+    nativeElementArea.style.height = nativeElementArea.scrollHeight + 'px';
+   }
+  }
 
   ngOnInit(): void {
     this.control = this.formGroup.get(this.formControName);
