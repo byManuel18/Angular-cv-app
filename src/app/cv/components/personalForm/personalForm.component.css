@@ -29,6 +29,25 @@
     grid-template-columns: repeat(6, 1fr);
     gap: 15px;
   }
+
+  .network {
+    width: 100%;
+  }
+
+  .network .profileSelect{
+    display: flex;
+    gap: 10px;
+  }
+
+  .profiles{
+    padding-top: 15px;
+  }
+
+  .profiles fieldset div{
+    width: 100%;
+    display: flex;
+    gap: 15px;
+  }
 }
 
 :host-context(.platform-core){

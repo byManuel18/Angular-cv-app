@@ -1,5 +1,5 @@
 @if(personalInfoGroup){
-  <fieldset [formGroup]="personalInfoGroup!">
+  <fieldset [formGroup]="personalInfoGroup!" class="main">
     @if (!personalInfoGroup.controls[getControlName('Image')].value) {
       <shared-input-file [title]="'Foto Personal'" (fileChange)="changeImg($event)"/>
     } @else {
@@ -15,6 +15,26 @@
       <shared-input label="Ciudad" [errorsControl]="controlsErrors.city" [formControName]="this.getControlName('City')" [formGroup]="personalInfoGroup" />
       <shared-input label="Código Postal" [errorsControl]="controlsErrors.postalCode" [formControName]="this.getControlName('PostalCode')" [formGroup]="personalInfoGroup" />
       <shared-input label="Región" [errorsControl]="controlsErrors.region" [formControName]="this.getControlName('Region')" [formGroup]="personalInfoGroup" />
+    </section>
+
+    <section class="network">
+      <article class="profileSelect">
+        <shared-select [dataSelect]="selectNetworkArray | arrayFilter:getArrayNetworksSelected():'network'" [label]="'label'" [optionKey]="'network'" [labelSelect]="'Network'"  (selectChange)="changeSelectNetwork($event)" [value]="selectedNetwork() ? selectedNetwork()!.network : ''"></shared-select>
+        <button [disabled]="!selectedNetwork()" (click)="addNetwork()">Añadir Network</button>
+      </article>
+      <article class="profiles" [formArrayName]="getControlName('Profiles')">
+        @if(arrayNetworks.controls.length > 0){
+          <fieldset>
+            @for(control of arrayNetworks.controls; track $index){
+              <div>
+                <shared-input label="Network" [disabled]="true" [errorsControl]="controlsErrors.profiles" [formControName]="this.getControlNameProfiles('Name')" [formGroup]="getGroupNetwork($index)" />
+                <shared-input label="Url" [errorsControl]="controlsErrors.profiles" [formControName]="this.getControlNameProfiles('Url')" [formGroup]="getGroupNetwork($index)" />
+                <button (click)="removeSelectedNetwork($index)">X</button>
+              </div>
+            }
+          </fieldset>
+        }
+      </article>
     </section>
 
     <shared-input label="Teléfono" [errorsControl]="controlsErrors.phone" [formControName]="this.getControlName('Phone')" [formGroup]="personalInfoGroup" />

@@ -1,9 +1,10 @@
 import { Utils } from './../../../shared/utils/utils';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Network } from '../../interfaces/cv.interface';
 import { SelectNetworkData } from '../../data/selectNetwork';
 import { Subscription } from 'rxjs';
+import { NetworkOption } from '../../interfaces/cv-form.interfaces';
 
 
 export enum ControlNamesPersonalInfo {
@@ -18,6 +19,11 @@ export enum ControlNamesPersonalInfo {
   City = 'city',
   Region = "region",
   Profiles = 'profiles'
+}
+
+export enum ControlNamesProfiles {
+  Name = 'name',
+  Url = 'url'
 }
 
 enum Group {
@@ -40,13 +46,6 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   $formSubscription?: Subscription;
 
-
-  selectNetworkArray = (Object.keys(SelectNetworkData) as Network[]).map((key) => ({
-    network: key,
-    label: SelectNetworkData[key]?.label
-  }));
-
-
   constructor(){
 
     this.myForm = this.fb.group({
@@ -61,18 +60,16 @@ export class CreateCvComponent implements OnInit, OnDestroy{
         [ControlNamesPersonalInfo.City]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
         [ControlNamesPersonalInfo.Region]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
         [ControlNamesPersonalInfo.PostalCode]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.Profiles]: this.fb.array([
-          this.fb.group({
-            // name: this.fb.control('', {validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur'}),
-          })
-        ])
+        [ControlNamesPersonalInfo.Profiles]: this.fb.array([])
 
       }),
     });
 
     const savedFrom = localStorage.getItem(LOCAL_STORAGE_FORM);
     if(savedFrom){
-      this.myForm.setValue(JSON.parse(savedFrom));
+      const dataParse = JSON.parse(savedFrom)
+      this.myForm.patchValue(dataParse);
+      this.addNetworkGroup(dataParse[Group.PersonalInfo][ControlNamesPersonalInfo.Profiles]);
     }
   }
 
@@ -97,12 +94,18 @@ export class CreateCvComponent implements OnInit, OnDestroy{
    }
   }
 
-  changeSelect(event: {
-    network: Network,
-    label: string | undefined
-  } | null){
-    console.log(event);
+  addNetworkGroup(profiles:{[ControlNamesProfiles.Name]: Network, [ControlNamesProfiles.Url]: string}[]){
+    profiles.forEach((profile)=>{
+      this.arrayNetworks.push(this.fb.group({
+        [ControlNamesProfiles.Name]: this.fb.control({value: profile[ControlNamesProfiles.Name], disabled: true }, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesProfiles.Url]: this.fb.control(profile[ControlNamesProfiles.Url], {validators: [Validators.required], updateOn: 'blur'}),
+      }));
+    })
   }
 
+
+  get arrayNetworks(): FormArray {
+    return this.myForm.get(Group.PersonalInfo)?.get(ControlNamesPersonalInfo.Profiles) as FormArray;
+  }
 
 }

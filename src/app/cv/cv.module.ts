@@ -21,6 +21,7 @@ import { IconPrintComponent } from '../shared/icons/print.component';
 import { PersonalFormComponent } from './components/personalForm/personalForm.component';
 import { TextareaComponent } from '../shared/components/textarea/textareacomponent';
 import { SelectComponent } from '../shared/components/select/select.component';
+import { ArrayFilterPipe } from '../shared/pipes/arrayFilter.pipe';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { SelectComponent } from '../shared/components/select/select.component';
     InputComponent,
     IconPrintComponent,
     TextareaComponent,
-    SelectComponent
+    SelectComponent,
+    ArrayFilterPipe
   ],
   providers: [TitleCasePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

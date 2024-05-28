@@ -24,6 +24,8 @@ export class SelectComponent<T> implements OnInit {
   @Input() label!: keyof T;
   @Input() optionKey!: keyof T;
 
+  @Input() value: string = '';
+
   @Output() selectChange: EventEmitter<T | null > = new EventEmitter<T | null>();
 
   private control?: AbstractControl | null;

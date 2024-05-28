@@ -15,9 +15,9 @@
 }@else{
   <div class="input-group">
     <select class="input noForm" (change)="changeSelect($event)">
-      <option value=""></option>
+      <option value="" [selected]=" value === ''"></option>
       @for(selectOption of dataSelect; track $index){
-        <option [value]="selectOption[optionKey]">{{selectOption[label]}}</option>
+        <option [value]="selectOption[optionKey]" [selected]=" value === selectOption[optionKey]">{{selectOption[label]}}</option>
       }
     </select>
     <label class="user-label">{{labelSelect}}</label>
