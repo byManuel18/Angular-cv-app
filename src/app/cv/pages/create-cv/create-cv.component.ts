@@ -49,39 +49,15 @@ export class CreateCvComponent implements OnInit, OnDestroy{
   constructor(){
 
     this.myForm = this.fb.group({
-      [Group.PersonalInfo] : this.fb.group({
-        [ControlNamesPersonalInfo.Name]: this.fb.control('', {validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.Label]: this.fb.control('', {validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.Image]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.Email]: this.fb.control('', {validators: [Validators.required, Validators.email], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.Phone]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.Sumary]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.Url]: this.fb.control('', {validators: [], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.City]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.Region]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.PostalCode]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesPersonalInfo.Profiles]: this.fb.array([])
-
-      }),
+      [Group.PersonalInfo] : this.formatPersonalInfoGroup(),
     });
 
-    const savedFrom = localStorage.getItem(LOCAL_STORAGE_FORM);
-    if(savedFrom){
-      const dataParse = JSON.parse(savedFrom)
-      this.myForm.patchValue(dataParse);
-      const profiles: Profile[] = (dataParse[Group.PersonalInfo][ControlNamesPersonalInfo.Profiles] as []).map((profile)=>{
-        return {
-          network: profile[ControlNamesProfiles.Name],
-          url: profile[ControlNamesProfiles.Url]
-        }
-      })
-      this.addNetworkGroup(profiles);
-    }
+    this.loadForm();
   }
 
   ngOnInit(): void {
     this.$formSubscription = this.myForm.valueChanges.subscribe(()=>{
-      localStorage.setItem(LOCAL_STORAGE_FORM, JSON.stringify(this.myForm.getRawValue()));
+      this.saveForm();
     });
   }
 
@@ -112,6 +88,46 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   get arrayNetworks(): FormArray {
     return this.myForm.get(Group.PersonalInfo)?.get(ControlNamesPersonalInfo.Profiles) as FormArray;
+  }
+
+  formatPersonalInfoGroup(){
+    return this.fb.group({
+      [ControlNamesPersonalInfo.Name]: this.fb.control('', {validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.Label]: this.fb.control('', {validators: [Validators.required, Validators.minLength(10)], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.Image]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.Email]: this.fb.control('', {validators: [Validators.required, Validators.email], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.Phone]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.Sumary]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.Url]: this.fb.control('', {validators: [], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.City]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.Region]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.PostalCode]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.Profiles]: this.fb.array([])
+    });
+  }
+
+  loadForm(){
+    try {
+      const savedFrom = localStorage.getItem(LOCAL_STORAGE_FORM);
+      if(savedFrom){
+        const dataParse = JSON.parse(savedFrom)
+        this.myForm.patchValue(dataParse);
+        const profiles: Profile[] = (dataParse[Group.PersonalInfo][ControlNamesPersonalInfo.Profiles] as []).map((profile)=>{
+          return {
+            network: profile[ControlNamesProfiles.Name],
+            url: profile[ControlNamesProfiles.Url]
+          }
+        })
+        this.addNetworkGroup(profiles);
+      }
+    } catch (error) {
+      localStorage.removeItem(LOCAL_STORAGE_FORM);
+      this.myForm.reset();
+    }
+  }
+
+  saveForm(){
+    localStorage.setItem(LOCAL_STORAGE_FORM, JSON.stringify(this.myForm.getRawValue()));
   }
 
 }
