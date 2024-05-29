@@ -46,7 +46,7 @@ export interface Location {
 
 export interface Profile {
   network: Network;
-  username: string;
+  username?: string;
   url: string;
 }
 

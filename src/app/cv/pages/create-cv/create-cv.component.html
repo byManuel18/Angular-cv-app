@@ -2,7 +2,7 @@
   <form [formGroup]="myForm">
     <swiper-container>
       <swiper-slide>
-        <cv-personal-form [personalInfoGroup]="this.getFormGroup('PersonalInfo')"/>
+        <cv-personal-form [personalInfoGroup]="this.getFormGroup('PersonalInfo')" (newArrayGroup)="addNetworkGroup([$event])"/>
       </swiper-slide>
       <swiper-slide>
 

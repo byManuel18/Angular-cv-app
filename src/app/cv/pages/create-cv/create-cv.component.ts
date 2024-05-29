@@ -1,7 +1,7 @@
 import { Utils } from './../../../shared/utils/utils';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Network } from '../../interfaces/cv.interface';
+import { Network, Profile } from '../../interfaces/cv.interface';
 import { SelectNetworkData } from '../../data/selectNetwork';
 import { Subscription } from 'rxjs';
 import { NetworkOption } from '../../interfaces/cv-form.interfaces';
@@ -69,7 +69,13 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     if(savedFrom){
       const dataParse = JSON.parse(savedFrom)
       this.myForm.patchValue(dataParse);
-      this.addNetworkGroup(dataParse[Group.PersonalInfo][ControlNamesPersonalInfo.Profiles]);
+      const profiles: Profile[] = (dataParse[Group.PersonalInfo][ControlNamesPersonalInfo.Profiles] as []).map((profile)=>{
+        return {
+          network: profile[ControlNamesProfiles.Name],
+          url: profile[ControlNamesProfiles.Url]
+        }
+      })
+      this.addNetworkGroup(profiles);
     }
   }
 
@@ -94,11 +100,11 @@ export class CreateCvComponent implements OnInit, OnDestroy{
    }
   }
 
-  addNetworkGroup(profiles:{[ControlNamesProfiles.Name]: Network, [ControlNamesProfiles.Url]: string}[]){
+  addNetworkGroup(profiles: Profile[]){
     profiles.forEach((profile)=>{
       this.arrayNetworks.push(this.fb.group({
-        [ControlNamesProfiles.Name]: this.fb.control({value: profile[ControlNamesProfiles.Name], disabled: true }, {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesProfiles.Url]: this.fb.control(profile[ControlNamesProfiles.Url], {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesProfiles.Name]: this.fb.control({value: profile.network, disabled: true }, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesProfiles.Url]: this.fb.control(profile.url, {validators: [Validators.required], updateOn: 'blur'}),
       }));
     })
   }

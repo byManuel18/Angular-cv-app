@@ -1,9 +1,9 @@
-import { Component, Input, inject, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ControlNamesPersonalInfo, ControlNamesProfiles } from '../../pages/create-cv/create-cv.component';
 import { Utils } from '../../../shared/utils/utils';
 import { SelectNetworkData } from '../../data/selectNetwork';
-import { Network } from '../../interfaces/cv.interface';
+import { Network, Profile } from '../../interfaces/cv.interface';
 import { NetworkOption } from '../../interfaces/cv-form.interfaces';
 
 
@@ -18,6 +18,7 @@ export class PersonalFormComponent {
   fb = inject(FormBuilder);
 
   @Input() personalInfoGroup?: FormGroup;
+  @Output() newArrayGroup: EventEmitter<Profile> = new EventEmitter<Profile>();
 
   selectNetworkArray: NetworkOption[] = (Object.keys(SelectNetworkData) as Network[]).map((key) => ({
     network: key,
@@ -100,10 +101,7 @@ export class PersonalFormComponent {
   }
 
   addNetworkGroup(networkOptin: NetworkOption){
-    this.arrayNetworks.push(this.fb.group({
-      [ControlNamesProfiles.Name]: this.fb.control({value: networkOptin.network, disabled: true }, {validators: [Validators.required], updateOn: 'blur'}),
-      [ControlNamesProfiles.Url]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
-    }));
+    this.newArrayGroup.emit({network: networkOptin.network, url: ''});
   }
 
   get arrayNetworks(): FormArray {
