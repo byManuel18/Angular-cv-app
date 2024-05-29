@@ -126,4 +126,8 @@ export class PersonalFormComponent {
     this.arrayNetworks.removeAt(index);
   }
 
+  clearImg(){
+    this.personalInfoGroup?.controls[this.getControlName('Image')].reset();
+  }
+
 }

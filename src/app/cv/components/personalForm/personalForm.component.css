@@ -48,6 +48,16 @@
     display: flex;
     gap: 15px;
   }
+
+  figure{
+    position: relative;
+  }
+
+  figure button{
+    position: absolute;
+    top: -5px;
+    right: -10px;
+  }
 }
 
 :host-context(.platform-core){

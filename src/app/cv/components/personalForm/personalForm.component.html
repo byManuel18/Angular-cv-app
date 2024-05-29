@@ -4,6 +4,7 @@
       <shared-input-file [title]="'Foto Personal'" (fileChange)="changeImg($event)"/>
     } @else {
       <figure>
+        <button (click)="clearImg()">x</button>
         <img [src]="personalInfoGroup.controls[getControlName('Image')].value" alt="Foto Personal">
       </figure>
     }
