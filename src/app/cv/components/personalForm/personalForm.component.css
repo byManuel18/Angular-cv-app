@@ -37,6 +37,7 @@
   .network .profileSelect{
     display: flex;
     gap: 10px;
+    align-items: center;
   }
 
   .profiles{
@@ -47,6 +48,7 @@
     width: 100%;
     display: flex;
     gap: 15px;
+    align-items: center;
   }
 
   figure{
