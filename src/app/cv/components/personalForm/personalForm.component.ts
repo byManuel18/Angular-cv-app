@@ -33,34 +33,36 @@ export class PersonalFormComponent {
       'minlength': 'Mínimo 10 caracteres'
     },
     label: {
-
+      'required': 'Campo Obligatorio',
     },
     image: {
-
+      'required': 'Campo Obligatorio',
     },
     email: {
-
+      'required': 'Campo Obligatorio',
+      'email': 'Correo no válido'
     },
     phone: {
-
+      'required': 'Campo Obligatorio',
     },
     sumary:{
-
+      'required': 'Campo Obligatorio',
     },
     url:{
-
+      'pattern': 'Url no válida'
     },
     city:{
-
+      'required': 'Campo Obligatorio',
     },
     region:{
-
+      'required': 'Campo Obligatorio',
     },
     postalCode:{
-
+      'required': 'Campo Obligatorio',
     },
     profiles:{
-
+      'required': 'Campo Obligatorio',
+      'pattern': 'Url no válida'
     }
   }
 
@@ -128,6 +130,15 @@ export class PersonalFormComponent {
 
   clearImg(){
     this.personalInfoGroup?.controls[this.getControlName('Image')].reset();
+  }
+
+  get isInvalidImg(): boolean {
+    const imgControl = this.personalInfoGroup?.controls[this.getControlName('Image')];
+    return !!(
+      imgControl?.dirty &&
+      imgControl?.touched &&
+      imgControl?.invalid
+    );
   }
 
 }

@@ -1,10 +1,8 @@
 import { Utils } from './../../../shared/utils/utils';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Network, Profile } from '../../interfaces/cv.interface';
-import { SelectNetworkData } from '../../data/selectNetwork';
+import { Profile } from '../../interfaces/cv.interface';
 import { Subscription } from 'rxjs';
-import { NetworkOption } from '../../interfaces/cv-form.interfaces';
 
 
 export enum ControlNamesPersonalInfo {
@@ -31,6 +29,7 @@ enum Group {
 }
 
 const LOCAL_STORAGE_FORM: string = 'CV-FORM';
+const URL_PATTERN: RegExp = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(\:[a-zA-Z0-9.&%$-]+)*@)?[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})+(:[0-9]{1,5})?(\/[^\s]*)?$/;
 
 @Component({
   selector: 'create-cv',
@@ -80,7 +79,7 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     profiles.forEach((profile)=>{
       this.arrayNetworks.push(this.fb.group({
         [ControlNamesProfiles.Name]: this.fb.control({value: profile.network, disabled: true }, {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesProfiles.Url]: this.fb.control(profile.url, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesProfiles.Url]: this.fb.control(profile.url, {validators: [Validators.required, Validators.pattern(URL_PATTERN)], updateOn: 'blur'}),
       }));
     })
   }
@@ -98,7 +97,7 @@ export class CreateCvComponent implements OnInit, OnDestroy{
       [ControlNamesPersonalInfo.Email]: this.fb.control('', {validators: [Validators.required, Validators.email], updateOn: 'blur'}),
       [ControlNamesPersonalInfo.Phone]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
       [ControlNamesPersonalInfo.Sumary]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
-      [ControlNamesPersonalInfo.Url]: this.fb.control('', {validators: [], updateOn: 'blur'}),
+      [ControlNamesPersonalInfo.Url]: this.fb.control('', {validators: [Validators.pattern(URL_PATTERN)], updateOn: 'blur'}),
       [ControlNamesPersonalInfo.City]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
       [ControlNamesPersonalInfo.Region]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
       [ControlNamesPersonalInfo.PostalCode]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),

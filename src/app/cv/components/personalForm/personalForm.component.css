@@ -51,6 +51,10 @@
     align-items: center;
   }
 
+  .profiles fieldset div shared-input:first-child{
+   align-self: flex-start;
+  }
+
   figure{
     position: relative;
   }
@@ -59,6 +63,14 @@
     position: absolute;
     top: -5px;
     right: -10px;
+  }
+
+  .btnContainer{
+    padding-bottom: 15px;
+  }
+
+  .borderRed{
+    --border-color: red;
   }
 }
 

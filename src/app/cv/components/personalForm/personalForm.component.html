@@ -1,7 +1,7 @@
 @if(personalInfoGroup){
   <fieldset [formGroup]="personalInfoGroup!" class="main">
     @if (!personalInfoGroup.controls[getControlName('Image')].value) {
-      <shared-input-file [title]="'Foto Personal'" (fileChange)="changeImg($event)"/>
+      <shared-input-file [title]="'Foto Personal'" (fileChange)="changeImg($event)" [ngClass]="{'borderRed': isInvalidImg}"/>
     } @else {
       <figure>
         <button (click)="clearImg()">x</button>
@@ -18,10 +18,11 @@
       <shared-input label="Región" [errorsControl]="controlsErrors.region" [formControName]="this.getControlName('Region')" [formGroup]="personalInfoGroup" />
     </section>
 
+    <shared-input label="Sitio Web" [errorsControl]="controlsErrors.url" [formControName]="this.getControlName('Url')" [formGroup]="personalInfoGroup" />
+
     <section class="network">
       <article class="profileSelect">
         <shared-select [dataSelect]="selectNetworkArray | arrayFilter:getArrayNetworksSelected():'network'" [label]="'label'" [optionKey]="'network'" [labelSelect]="'Network'"  (selectChange)="changeSelectNetwork($event)" [value]="selectedNetwork() ? selectedNetwork()!.network : ''"></shared-select>
-        <!-- <button [disabled]="!selectedNetwork()" (click)="addNetwork()">Añadir Network</button> -->
         <shared-button [disabled]="!selectedNetwork()" (onClick)="addNetwork()" label="Añadir"/>
       </article>
       <article class="profiles" [formArrayName]="getControlName('Profiles')">
@@ -42,8 +43,10 @@
     <shared-input label="Teléfono" [errorsControl]="controlsErrors.phone" [formControName]="this.getControlName('Phone')" [formGroup]="personalInfoGroup" />
     <shared-input label="Correo" [errorsControl]="controlsErrors.email" [formControName]="this.getControlName('Email')" [formGroup]="personalInfoGroup" />
     <shared-textarea label="Sobre mí" [errorsControl]="controlsErrors.sumary" [formControName]="this.getControlName('Sumary')" [formGroup]="personalInfoGroup" />
+    <div class="btnContainer">
+      <shared-button (onClick)="goNext()" label="Siguiente"/>
+    </div>
 
-    <shared-button (onClick)="goNext()" label="Siguiente"/>
 
 
   </fieldset>
