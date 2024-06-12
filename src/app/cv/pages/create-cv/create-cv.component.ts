@@ -1,8 +1,11 @@
 import { Utils } from './../../../shared/utils/utils';
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Profile } from '../../interfaces/cv.interface';
 import { Subscription } from 'rxjs';
+import Swiper from 'swiper';
+import { SwiperContainer } from 'swiper/element';
+import { SwiperOptions } from 'swiper/types';
 
 
 export enum ControlNamesPersonalInfo {
@@ -38,12 +41,15 @@ const URL_PATTERN: RegExp = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(\:[a-zA-Z0-9.&%$-
 })
 export class CreateCvComponent implements OnInit, OnDestroy{
 
+  @ViewChild('carrusel',{static: true}) carrusel?: ElementRef;
 
   myForm : FormGroup;
 
   fb = inject(FormBuilder);
 
   $formSubscription?: Subscription;
+
+  swipperElemet = signal<SwiperContainer | null>(null);
 
   constructor(){
 
@@ -58,6 +64,8 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     this.$formSubscription = this.myForm.valueChanges.subscribe(()=>{
       this.saveForm();
     });
+
+    this.initSwiper();
   }
 
 
@@ -127,6 +135,23 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   saveForm(){
     localStorage.setItem(LOCAL_STORAGE_FORM, JSON.stringify(this.myForm.getRawValue()));
+  }
+
+  nextSlider(){
+    (this.carrusel?.nativeElement.swiper as Swiper).slideNext();
+  }
+
+  initSwiper(){
+    const swiperConstructor = this.carrusel?.nativeElement;
+    const swiperOptions: SwiperOptions = {
+      slidesPerView : 1,
+      allowTouchMove: false,
+    }
+
+    Object.assign(swiperConstructor, swiperOptions);
+
+    this.swipperElemet.set(swiperConstructor as SwiperContainer);
+    this.swipperElemet()?.initialize();
   }
 
 }

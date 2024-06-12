@@ -19,6 +19,7 @@ export class PersonalFormComponent {
 
   @Input() personalInfoGroup?: FormGroup;
   @Output() newArrayGroup: EventEmitter<Profile> = new EventEmitter<Profile>();
+  @Output() goNextStep: EventEmitter<boolean> = new EventEmitter();
 
   selectNetworkArray: NetworkOption[] = (Object.keys(SelectNetworkData) as Network[]).map((key) => ({
     network: key,
@@ -89,6 +90,10 @@ export class PersonalFormComponent {
     if(this.personalInfoGroup){
       Utils.marAllAsDirty(this.personalInfoGroup)
       this.personalInfoGroup?.markAllAsTouched();
+
+      if(this.personalInfoGroup.valid){
+        this.goNextStep.emit(true);
+      }
     }
   }
   changeSelectNetwork(event: NetworkOption | null){

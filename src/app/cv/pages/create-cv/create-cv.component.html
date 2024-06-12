@@ -1,8 +1,8 @@
 <main>
   <form [formGroup]="myForm">
-    <swiper-container>
+    <swiper-container #carrusel init="false">
       <swiper-slide>
-        <cv-personal-form [personalInfoGroup]="this.getFormGroup('PersonalInfo')" (newArrayGroup)="addNetworkGroup([$event])"/>
+        <cv-personal-form [personalInfoGroup]="this.getFormGroup('PersonalInfo')" (newArrayGroup)="addNetworkGroup([$event])" (goNextStep)="nextSlider()"/>
       </swiper-slide>
       <swiper-slide>
 
