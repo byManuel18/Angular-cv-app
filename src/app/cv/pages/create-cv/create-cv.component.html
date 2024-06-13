@@ -14,7 +14,7 @@
 
   <div class="ballsContainer">
     @for (item of balls; track $index) {
-      <div class="ball" [ngClass]="{'activeIndex': $index === indexActive, 'validForm': validFornGroup(item) && $index !== indexActive, 'invalidForm': invalidFornGroup(item) && $index !== indexActive}"><span>{{$index}}</span></div>
+      <div class="ball" [ngClass]="{'activeIndex': $index === indexActive, 'validForm': validFornGroup(item) && $index !== indexActive, 'invalidForm': invalidFornGroup(item) && $index !== indexActive}"><span>{{$index + 1}}</span></div>
     }
   </div>
 </main>
