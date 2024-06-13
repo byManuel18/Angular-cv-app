@@ -51,6 +51,10 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   swipperElemet = signal<SwiperContainer | null>(null);
 
+  balls: (keyof typeof Group)[] = Object.keys(Group) as (keyof typeof Group)[];
+
+  indexActive: number = 0;
+
   constructor(){
 
     this.myForm = this.fb.group({
@@ -111,6 +115,8 @@ export class CreateCvComponent implements OnInit, OnDestroy{
       [ControlNamesPersonalInfo.PostalCode]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
       [ControlNamesPersonalInfo.Profiles]: this.fb.array([])
     });
+
+
   }
 
   loadForm(){
@@ -137,8 +143,9 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     localStorage.setItem(LOCAL_STORAGE_FORM, JSON.stringify(this.myForm.getRawValue()));
   }
 
-  nextSlider(){
-    (this.carrusel?.nativeElement.swiper as Swiper).slideNext();
+  nextSlider(index: number){
+    this.indexActive = index;
+    this.swipperElemet()?.swiper.slideTo(index);
   }
 
   initSwiper(){
@@ -152,6 +159,16 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
     this.swipperElemet.set(swiperConstructor as SwiperContainer);
     this.swipperElemet()?.initialize();
+  }
+
+  validFornGroup(form: keyof typeof Group): boolean{
+    const group = this.getFormGroup(form);
+    return group.valid && group.dirty;
+  }
+
+  invalidFornGroup(form: keyof typeof Group): boolean{
+    const group = this.getFormGroup(form);
+    return group.invalid && group.dirty;
   }
 
 }

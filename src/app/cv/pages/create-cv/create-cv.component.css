@@ -1,5 +1,5 @@
 :host {
-  main{
+  main {
     display: grid;
     place-items: center;
     height: 100vh;
@@ -24,23 +24,100 @@
       overflow-y: auto;
     }
   }
+
+  .ballsContainer {
+    display: flex;
+    gap: 20px;
+    position: fixed;
+  }
+
+  .ball {
+    padding: 12px 15px;
+    border: 1px solid #000;
+    background-color: white;
+    border-radius: 100%;
+    position: relative;
+  }
+
+  .ball:nth-child(1)::after,
+  .ball:nth-child(2)::after {
+    content: "";
+    height: 1px;
+    display: block;
+    width: 11px;
+    position: absolute;
+    top: 50%;
+    right: -11px;
+  }
+
+  .ball:nth-child(2)::before,
+  .ball:nth-child(3)::before {
+    content: "";
+    height: 1px;
+    display: block;
+    width: 11px;
+    position: absolute;
+    top: 50%;
+    left: -11px;
+  }
+
+  .ball:not(.activeIndex):not(.validForm):not(.invalidForm)::after,
+  .ball:not(.activeIndex):not(.validForm):not(.invalidForm)::before {
+    border: 1px solid;
+  }
+
+  .activeIndex::after,
+  .activeIndex::before {
+    border: 1px solid #1a73e8;
+  }
+
+  .activeIndex {
+    background-color: #1a73e8;
+    color: #fff;
+  }
+
+  .validForm {
+    background-color: #00ff00;
+    color: #fff;
+  }
+
+  .validForm::after,
+  .validForm::before {
+    border: 1px solid #00ff00;
+  }
+  .invalidForm::after,
+  .invalidForm::before {
+    border: 1px solid #ff0000;
+  }
+
+  .invalidForm {
+    color: #fff;
+    background-color: #ff0000;
+  }
 }
 
-:host-context(.platform-core){
+:host-context(.platform-core) {
   form {
     height: 75%;
   }
   swiper-container {
     max-width: 700px;
   }
+
+  .ballsContainer{
+    top: 20px;
+  }
 }
 
-
-:host-context(.platform-mobile){
+:host-context(.platform-mobile) {
   form {
     height: 85%;
   }
   swiper-container {
     max-width: 100%;
+  }
+
+  .ballsContainer{
+    top: 10px;
   }
 }

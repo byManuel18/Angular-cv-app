@@ -2,7 +2,7 @@
   <form [formGroup]="myForm">
     <swiper-container #carrusel init="false">
       <swiper-slide>
-        <cv-personal-form [personalInfoGroup]="this.getFormGroup('PersonalInfo')" (newArrayGroup)="addNetworkGroup([$event])" (goNextStep)="nextSlider()"/>
+        <cv-personal-form [personalInfoGroup]="this.getFormGroup('PersonalInfo')" (newArrayGroup)="addNetworkGroup([$event])" (goNextStep)="nextSlider(1)"/>
       </swiper-slide>
       <swiper-slide>
 
@@ -11,4 +11,10 @@
     </swiper-container>
 
   </form>
+
+  <div class="ballsContainer">
+    @for (item of balls; track $index) {
+      <div class="ball" [ngClass]="{'activeIndex': $index === indexActive, 'validForm': validFornGroup(item) && $index !== indexActive, 'invalidForm': invalidFornGroup(item) && $index !== indexActive}"><span>{{$index}}</span></div>
+    }
+  </div>
 </main>
