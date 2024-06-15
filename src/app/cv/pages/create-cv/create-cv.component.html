@@ -5,7 +5,7 @@
         <cv-personal-form [personalInfoGroup]="this.getFormGroup('PersonalInfo')" (newArrayGroup)="addNetworkGroup([$event])" (goNextStep)="nextSlider($event)"/>
       </swiper-slide>
       <swiper-slide>
-        <cv-education-form/>
+        <cv-education-form [educationInfoGroup]="this.getFormGroup('Education')"/>
       </swiper-slide>
       <swiper-slide>Slide 3</swiper-slide>
     </swiper-container>

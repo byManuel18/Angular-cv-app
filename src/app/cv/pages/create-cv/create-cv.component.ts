@@ -33,7 +33,7 @@ export enum ControlNamesEducation {
   EndDate = 'endDate'
 }
 
-enum Group {
+export enum Group {
   PersonalInfo = 'personalInfo',
   Education = 'education'
 }

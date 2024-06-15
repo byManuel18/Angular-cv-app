@@ -1,1 +1,19 @@
-<p>educationForm works!</p>,
+
+
+@if(educationInfoGroup){
+  <fieldset [formGroup]="educationInfoGroup!">
+    <h1>Educación</h1>
+    <section [formArrayName]="this.geArrayEducationName()">
+
+      @if(this.getArrayEducations.length > 0){
+        @for (control of this.getArrayEducations.controls; track $index) {
+          <article>
+
+          </article>
+        }
+      }
+
+
+    </section>
+  </fieldset>
+}
