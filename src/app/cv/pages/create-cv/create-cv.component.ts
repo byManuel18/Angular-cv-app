@@ -1,9 +1,8 @@
 import { Utils } from './../../../shared/utils/utils';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Profile } from '../../interfaces/cv.interface';
+import { Education, Profile } from '../../interfaces/cv.interface';
 import { Subscription } from 'rxjs';
-import Swiper from 'swiper';
 import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 
@@ -27,8 +26,16 @@ export enum ControlNamesProfiles {
   Url = 'url'
 }
 
+export enum ControlNamesEducation {
+  Institution = 'institution',
+  Area = 'area',
+  StartDate = 'startDate',
+  EndDate = 'endDate'
+}
+
 enum Group {
   PersonalInfo = 'personalInfo',
+  Education = 'education'
 }
 
 const LOCAL_STORAGE_FORM: string = 'CV-FORM';
@@ -59,6 +66,7 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
     this.myForm = this.fb.group({
       [Group.PersonalInfo] : this.formatPersonalInfoGroup(),
+      [Group.Education]: this.formatEducationGroup()
     });
 
     this.loadForm();
@@ -96,9 +104,24 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     })
   }
 
+  addEducationGroup(educations: Education[]){
+    educations.forEach((education)=>{
+      this.arrayNetworks.push(this.fb.group({
+        [ControlNamesEducation.Institution]: this.fb.control({value: education.institution, disabled: true }, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesEducation.Area]: this.fb.control(education.area, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesEducation.StartDate]: this.fb.control(education.startDate, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesEducation.EndDate]: this.fb.control(education.endDate, {validators: [], updateOn: 'blur'}),
+      }));
+    })
+  }
+
 
   get arrayNetworks(): FormArray {
     return this.myForm.get(Group.PersonalInfo)?.get(ControlNamesPersonalInfo.Profiles) as FormArray;
+  }
+
+  get arrayEducation(): FormArray {
+    return this.myForm.get(Group.Education)?.get(Group.Education) as FormArray;
   }
 
   formatPersonalInfoGroup(){
@@ -115,8 +138,12 @@ export class CreateCvComponent implements OnInit, OnDestroy{
       [ControlNamesPersonalInfo.PostalCode]: this.fb.control('', {validators: [Validators.required], updateOn: 'blur'}),
       [ControlNamesPersonalInfo.Profiles]: this.fb.array([])
     });
+  }
 
-
+  formatEducationGroup(){
+    return this.fb.group({
+      [Group.Education]: this.fb.array([])
+    })
   }
 
   loadForm(){
@@ -125,18 +152,28 @@ export class CreateCvComponent implements OnInit, OnDestroy{
       if(savedFrom){
         const dataParse = JSON.parse(savedFrom)
         this.myForm.patchValue(dataParse);
-        const profiles: Profile[] = (dataParse[Group.PersonalInfo][ControlNamesPersonalInfo.Profiles] as []).map((profile)=>{
-          return {
-            network: profile[ControlNamesProfiles.Name],
-            url: profile[ControlNamesProfiles.Url]
-          }
-        })
-        this.addNetworkGroup(profiles);
+        this.loadProfiles(dataParse);
+        this.loadEducations(dataParse);
       }
     } catch (error) {
       localStorage.removeItem(LOCAL_STORAGE_FORM);
       this.myForm.reset();
     }
+  }
+
+  loadProfiles(form: any){
+    const profiles: Profile[] = (form[Group.PersonalInfo][ControlNamesPersonalInfo.Profiles] as []).map((profile)=>{
+      return {
+        network: profile[ControlNamesProfiles.Name],
+        url: profile[ControlNamesProfiles.Url]
+      }
+    })
+    this.addNetworkGroup(profiles);
+  }
+
+  loadEducations(form: any){
+    const educations: Education[] = (form[Group.Education][Group.Education] as Education[]);
+    this.addEducationGroup(educations);
   }
 
   saveForm(){

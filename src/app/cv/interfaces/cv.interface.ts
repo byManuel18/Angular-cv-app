@@ -59,13 +59,13 @@ export interface Certificate {
 
 export interface Education {
   institution: string;
-  url: string;
+  url?: string;
   area: string;
-  studyType: string;
+  studyType?: string;
   startDate: string;
   endDate: string;
-  score: string;
-  courses: string[];
+  score?: string;
+  courses?: string[];
 }
 
 export interface Interest {

@@ -1,5 +1,6 @@
 @if(personalInfoGroup){
   <fieldset [formGroup]="personalInfoGroup!" class="main">
+    <h1>Información Personal</h1>
     @if (!personalInfoGroup.controls[getControlName('Image')].value) {
       <shared-input-file [title]="'Foto Personal'" (fileChange)="changeImg($event)" [ngClass]="{'borderRed': isInvalidImg}"/>
     } @else {

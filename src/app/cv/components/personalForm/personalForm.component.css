@@ -67,6 +67,8 @@
 
   .btnContainer{
     padding-bottom: 15px;
+    position: sticky;
+    bottom: 0;
   }
 
   .borderRed{

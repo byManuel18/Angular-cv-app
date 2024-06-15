@@ -23,6 +23,7 @@ import { TextareaComponent } from '../shared/components/textarea/textareacompone
 import { SelectComponent } from '../shared/components/select/select.component';
 import { ArrayFilterPipe } from '../shared/pipes/arrayFilter.pipe';
 import { ButtonComponent } from '../shared/components/button/button.component';
+import { EducationFormComponent } from './components/educationForm/educationForm.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ButtonComponent } from '../shared/components/button/button.component';
     PersonalInfoComponent,
     ShowCvComponent,
     CreateCvComponent,
-    PersonalFormComponent
+    PersonalFormComponent,
+    EducationFormComponent
   ],
   imports: [
     CommonModule,
