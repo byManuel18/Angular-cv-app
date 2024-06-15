@@ -144,8 +144,12 @@ export class CreateCvComponent implements OnInit, OnDestroy{
   }
 
   nextSlider(index: number){
-    this.indexActive = index;
-    this.swipperElemet()?.swiper.slideTo(index);
+    const group = this.getFormGroup(this.balls[this.indexActive]);
+    this.validateGroup(group);
+    if(group.valid){
+      this.indexActive = index;
+      this.swipperElemet()?.swiper.slideTo(index);
+    }
   }
 
   initSwiper(){
@@ -169,6 +173,11 @@ export class CreateCvComponent implements OnInit, OnDestroy{
   invalidFornGroup(form: keyof typeof Group): boolean{
     const group = this.getFormGroup(form);
     return group.invalid && group.dirty;
+  }
+
+  validateGroup(form: FormGroup){
+    Utils.marAllAsDirty(form)
+    form.markAllAsTouched();
   }
 
 }

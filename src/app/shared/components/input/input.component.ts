@@ -17,6 +17,7 @@ export class InputComponent implements OnInit {
   @Input() formGroup!: FormGroup;
   @Input() formControName!: string;
   @Input() label?: string;
+  @Input() inputType: string = 'text';
   @Input() errorsControl?: { [key: string]: string };
 
   private control?: AbstractControl | null;
