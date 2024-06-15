@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output, inject, signal } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
 import { ControlNamesPersonalInfo, ControlNamesProfiles } from '../../pages/create-cv/create-cv.component';
 import { Utils } from '../../../shared/utils/utils';
 import { SelectNetworkData } from '../../data/selectNetwork';
@@ -14,8 +14,6 @@ import { NetworkOption } from '../../interfaces/cv-form.interfaces';
   styleUrl: './personalForm.component.css',
 })
 export class PersonalFormComponent {
-
-  fb = inject(FormBuilder);
 
   @Input() personalInfoGroup?: FormGroup;
   @Output() newArrayGroup: EventEmitter<Profile> = new EventEmitter<Profile>();
