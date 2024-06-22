@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { Education } from '../../interfaces/cv.interface';
 import { ControlNamesEducation, Group } from '../../pages/create-cv/create-cv.component';
@@ -8,7 +8,6 @@ import { SwiperSlide } from 'swiper/element';
   selector: 'cv-education-form',
   templateUrl: './educationForm.component.html',
   styleUrl: './educationForm.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EducationFormComponent implements AfterViewChecked{
 

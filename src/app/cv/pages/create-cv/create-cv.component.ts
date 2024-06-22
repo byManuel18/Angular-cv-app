@@ -197,15 +197,23 @@ export class CreateCvComponent implements OnInit, OnDestroy{
   }
 
   nextSlider(index: number, fromBall = false){
-    // if(fromBall && index >= this.indexActive ){
-    //   return;
-    // }
-    const group = this.getFormGroup(this.balls[this.indexActive]);
-    this.validateGroup(group);
-    if(group.valid){
-      this.indexActive = index;
-      this.swipperElemet()?.swiper.slideTo(index);
+    if(fromBall && (index >= this.indexActive && index !== (this.indexActive + 1))){
+      return;
     }
+
+
+    if(index > this.indexActive){
+      const group = this.getFormGroup(this.balls[this.indexActive]);
+      this.validateGroup(group);
+      if(group.valid){
+        this.swipperElemet()?.swiper.slideTo(index);
+        this.indexActive = index;
+      }
+    }else{
+      this.swipperElemet()?.swiper.slideTo(index);
+      this.indexActive = index;
+    }
+
   }
 
   initSwiper(){
