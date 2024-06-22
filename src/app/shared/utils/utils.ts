@@ -1,5 +1,5 @@
 import { Type, ViewContainerRef } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 
 export class Utils{
@@ -30,16 +30,19 @@ export class Utils{
   }
 
   public static marAllAsDirty(formGroup: FormGroup){
+    formGroup.markAllAsTouched();
     Object.keys(formGroup.controls).forEach(controlKey =>{
       const control = formGroup.controls[controlKey];
       if(control instanceof FormGroup){
+        control.markAllAsTouched();
         Utils.marAllAsDirty(control);
       }else if(control instanceof FormArray){
+        control.markAsDirty();
         control.controls.forEach((arraycontrol=>{
           if(arraycontrol instanceof FormGroup){
             Utils.marAllAsDirty(arraycontrol);
           }else{
-            control.markAsDirty();
+            arraycontrol.markAsDirty();
           }
         }))
       }else{

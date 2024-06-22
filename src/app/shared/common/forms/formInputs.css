@@ -89,3 +89,9 @@ textarea{
   resize: none;
   overflow-y: hidden;
 }
+
+.input[type='date'] ~ label{
+  transform: translateY(-50%) scale(0.8);
+  background-color: #fff;
+  padding: 0 .2em;
+}

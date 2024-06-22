@@ -3,7 +3,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, signal } f
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Education, Profile } from '../../interfaces/cv.interface';
 import { Subscription } from 'rxjs';
-import { SwiperContainer } from 'swiper/element';
+import { SwiperContainer, SwiperSlide } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 
 
@@ -35,7 +35,9 @@ export enum ControlNamesEducation {
 
 export enum Group {
   PersonalInfo = 'personalInfo',
-  Education = 'education'
+  Education = 'education',
+  Work = 'work',
+  Certificates = 'certificates'
 }
 
 const LOCAL_STORAGE_FORM: string = 'CV-FORM';
@@ -66,7 +68,9 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
     this.myForm = this.fb.group({
       [Group.PersonalInfo] : this.formatPersonalInfoGroup(),
-      [Group.Education]: this.formatEducationGroup()
+      [Group.Education]: this.formatEducationGroup(),
+      [Group.Work]: this.formatWorkGroup(),
+      [Group.Certificates]: this.formatCertificatesGroup()
     });
 
     this.loadForm();
@@ -106,13 +110,13 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   addEducationGroup(educations: Education[]){
     educations.forEach((education)=>{
-      this.arrayNetworks.push(this.fb.group({
-        [ControlNamesEducation.Institution]: this.fb.control({value: education.institution, disabled: true }, {validators: [Validators.required], updateOn: 'blur'}),
+      this.arrayEducation.push(this.fb.group({
+        [ControlNamesEducation.Institution]: this.fb.control( education.institution, {validators: [Validators.required], updateOn: 'blur'}),
         [ControlNamesEducation.Area]: this.fb.control(education.area, {validators: [Validators.required], updateOn: 'blur'}),
         [ControlNamesEducation.StartDate]: this.fb.control(education.startDate, {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesEducation.EndDate]: this.fb.control(education.endDate, {validators: [], updateOn: 'blur'}),
+        [ControlNamesEducation.EndDate]: this.fb.control(education.endDate, {validators: [Validators.required], updateOn: 'blur'}),
       }));
-    })
+    });
   }
 
 
@@ -143,6 +147,18 @@ export class CreateCvComponent implements OnInit, OnDestroy{
   formatEducationGroup(){
     return this.fb.group({
       [Group.Education]: this.fb.array([])
+    })
+  }
+
+  formatWorkGroup(){
+    return this.fb.group({
+      [Group.Work]: this.fb.array([])
+    })
+  }
+
+  formatCertificatesGroup(){
+    return this.fb.group({
+      [Group.Certificates]: this.fb.array([])
     })
   }
 
@@ -180,7 +196,10 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     localStorage.setItem(LOCAL_STORAGE_FORM, JSON.stringify(this.myForm.getRawValue()));
   }
 
-  nextSlider(index: number){
+  nextSlider(index: number, fromBall = false){
+    // if(fromBall && index >= this.indexActive ){
+    //   return;
+    // }
     const group = this.getFormGroup(this.balls[this.indexActive]);
     this.validateGroup(group);
     if(group.valid){
@@ -214,7 +233,6 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   validateGroup(form: FormGroup){
     Utils.marAllAsDirty(form)
-    form.markAllAsTouched();
   }
 
 }

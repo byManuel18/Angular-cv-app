@@ -7,7 +7,7 @@
 
     form {
       max-width: 90vw;
-
+      max-height: 700px;
       border: 1px solid;
       border-radius: 0.5rem;
       background: #fff;
@@ -40,7 +40,7 @@
   }
 
   .ball:nth-child(1)::after,
-  .ball:nth-child(2)::after {
+  .ball:not(:last-child)::after {
     content: "";
     height: 1px;
     display: block;
@@ -50,8 +50,7 @@
     right: -11px;
   }
 
-  .ball:nth-child(2)::before,
-  .ball:nth-child(3)::before {
+  .ball:not(:first-child)::before {
     content: "";
     height: 1px;
     display: block;

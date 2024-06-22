@@ -11,4 +11,27 @@
     flex-direction: column;
     gap: 15px;
   }
+
+  section{
+   text-align: center;
+    width: 100%;
+  }
+
+  article{
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+  }
+
+  .btnContainer{
+    padding-bottom: 15px;
+    position: sticky;
+    bottom: 0;
+  }
+
 }

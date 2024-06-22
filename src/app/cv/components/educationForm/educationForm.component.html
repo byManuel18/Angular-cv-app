@@ -1,19 +1,26 @@
 
 
 @if(educationInfoGroup){
-  <fieldset [formGroup]="educationInfoGroup!">
+  <fieldset #fielsetMain [formGroup]="educationInfoGroup!">
     <h1>Educación</h1>
     <section [formArrayName]="this.geArrayEducationName()">
-
+      <shared-button (onClick)="addEducation()" label="Añadir"/>
       @if(this.getArrayEducations.length > 0){
         @for (control of this.getArrayEducations.controls; track $index) {
           <article>
-
+            <shared-input label="Area" [errorsControl]="controlsErrors.area" [formControName]="this.getControlName('Area')" [formGroup]="getGroupEducation($index)" />
+            <shared-input label="Institución" [errorsControl]="controlsErrors.institution" [formControName]="this.getControlName('Institution')" [formGroup]="getGroupEducation($index)" />
+            <shared-input label="Inicio" [inputType]="'date'" [errorsControl]="controlsErrors.startDate" [formControName]="this.getControlName('StartDate')" [formGroup]="getGroupEducation($index)" />
+            <shared-input label="Fin" [inputType]="'date'" [errorsControl]="controlsErrors.endDate" [formControName]="this.getControlName('EndDate')" [formGroup]="getGroupEducation($index)" />
+            <shared-button (onClick)="removeEducation($index)" label="Eliminar"/>
           </article>
         }
       }
 
-
     </section>
+
+    <div class="btnContainer">
+      <shared-button (onClick)="goNext()" label="Siguiente"/>
+    </div>
   </fieldset>
 }
