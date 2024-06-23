@@ -43,8 +43,8 @@ export enum ControlNamesCertificate{
 export enum Group {
   PersonalInfo = 'personalInfo',
   Education = 'education',
+  Certificates = 'certificates',
   Work = 'work',
-  Certificates = 'certificates'
 }
 
 const LOCAL_STORAGE_FORM: string = 'CV-FORM';

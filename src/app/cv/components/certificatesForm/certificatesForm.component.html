@@ -2,14 +2,17 @@
 
 @if(certificatesInfoGroup){
   <fieldset [formGroup]="certificatesInfoGroup!">
-    <h1>Educación</h1>
+    <h1>Certificados</h1>
     <section [formArrayName]="this.geArrayCertificatesName()">
       <shared-button (onClick)="addCertificates()" label="Añadir"/>
       @if(this.getArrayCertificates.length > 0){
         @for (control of this.getArrayCertificates.controls; track $index) {
           <article>
-
-            <shared-button (onClick)="removeCertificate($index)" label="Eliminar"/>
+            <shared-input class="col2" label="Nombre" [errorsControl]="controlsErrors.name" [formControName]="this.getControlName('Name')" [formGroup]="getGroupCertificates($index)" />
+            <shared-input label="Plataforma" [errorsControl]="controlsErrors.issuer" [formControName]="this.getControlName('Issuer')" [formGroup]="getGroupCertificates($index)" />
+            <shared-input label="Fecha Obtención" inputType="date" [errorsControl]="controlsErrors.url" [formControName]="this.getControlName('Date')" [formGroup]="getGroupCertificates($index)" />
+            <shared-input class="col2" label="Url" [errorsControl]="controlsErrors.url" [formControName]="this.getControlName('Url')" [formGroup]="getGroupCertificates($index)" />
+            <shared-button class="col2" (onClick)="removeCertificate($index)" label="Eliminar"/>
           </article>
         }
       }

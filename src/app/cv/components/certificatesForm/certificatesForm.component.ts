@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
-import { Certificate, Education } from '../../interfaces/cv.interface';
+import { Certificate } from '../../interfaces/cv.interface';
 import { ControlNamesCertificate, Group } from '../../pages/create-cv/create-cv.component';
 import { SwiperSlide } from 'swiper/element';
 
@@ -78,7 +78,7 @@ export class CertificatesFormComponent implements AfterViewChecked{
 
   goNext(){
     if(this.certificatesInfoGroup){
-      this.goNextStep.emit(2);
+      this.goNextStep.emit(3);
     }
   }
 }
