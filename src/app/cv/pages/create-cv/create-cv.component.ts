@@ -1,7 +1,7 @@
 import { Utils } from './../../../shared/utils/utils';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Certificate, Education, Profile } from '../../interfaces/cv.interface';
+import { Certificate, Education, Profile, Volunteer } from '../../interfaces/cv.interface';
 import { Subscription } from 'rxjs';
 import { SwiperContainer, SwiperSlide } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
@@ -38,6 +38,15 @@ export enum ControlNamesCertificate{
   Name = 'name',
   Date = 'date',
   Issuer = 'issuer'
+}
+
+export enum ControlNamesWork{
+  Name = 'name',
+  Position = 'position',
+  StartDate = 'startDate',
+  EndDate = 'endDate',
+  Summary = 'summary',
+  Highlights = 'highlights'
 }
 
 export enum Group {
@@ -137,6 +146,19 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     });
   }
 
+  addWorkGroup(works: Volunteer[]){
+    works.forEach((work)=>{
+      this.arrayCertificates.push(this.fb.group({
+        [ControlNamesWork.Name]: this.fb.control(work.name, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesWork.EndDate]: this.fb.control(work.endDate, {validators: [], updateOn: 'blur'}),
+        [ControlNamesWork.StartDate]: this.fb.control(work.startDate, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesWork.Position]: this.fb.control(work.position, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesWork.Summary]: this.fb.control(work.summary, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesWork.Highlights]: this.fb.array(work.highlights, {validators: [Validators.required], updateOn: 'blur'}),
+      }));
+    });
+  }
+
 
   get arrayNetworks(): FormArray {
     return this.myForm.get(Group.PersonalInfo)?.get(ControlNamesPersonalInfo.Profiles) as FormArray;
@@ -148,6 +170,10 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   get arrayCertificates(): FormArray {
     return this.myForm.get(Group.Certificates)?.get(Group.Certificates) as FormArray;
+  }
+
+  get arrayWorks(): FormArray {
+    return this.myForm.get(Group.Work)?.get(Group.Work) as FormArray;
   }
 
   formatPersonalInfoGroup(){

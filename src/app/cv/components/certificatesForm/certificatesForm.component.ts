@@ -33,6 +33,7 @@ export class CertificatesFormComponent implements AfterViewChecked{
     },
     url: {
       'required': 'Campo Obligatorio',
+      'pattern': 'Url no válida'
     }
   }
 
