@@ -10,8 +10,8 @@
           <article>
             <shared-input label="Area" [errorsControl]="controlsErrors.area" [formControName]="this.getControlName('Area')" [formGroup]="getGroupEducation($index)" />
             <shared-input label="Institución" [errorsControl]="controlsErrors.institution" [formControName]="this.getControlName('Institution')" [formGroup]="getGroupEducation($index)" />
-            <shared-input label="Inicio" [inputType]="'date'" [errorsControl]="controlsErrors.startDate" [formControName]="this.getControlName('StartDate')" [formGroup]="getGroupEducation($index)" />
-            <shared-input label="Fin" [inputType]="'date'" [errorsControl]="controlsErrors.endDate" [formControName]="this.getControlName('EndDate')" [formGroup]="getGroupEducation($index)" />
+            <shared-input label="Fecha Inicio" [inputType]="'date'" [errorsControl]="controlsErrors.startDate" [formControName]="this.getControlName('StartDate')" [formGroup]="getGroupEducation($index)" />
+            <shared-input label="Fecha Finilización" [inputType]="'date'" [errorsControl]="controlsErrors.endDate" [formControName]="this.getControlName('EndDate')" [formGroup]="getGroupEducation($index)" />
             <shared-button (onClick)="removeEducation($index)" label="Eliminar"/>
           </article>
         }

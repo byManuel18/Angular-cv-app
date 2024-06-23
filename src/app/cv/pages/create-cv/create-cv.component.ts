@@ -1,7 +1,7 @@
 import { Utils } from './../../../shared/utils/utils';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Education, Profile } from '../../interfaces/cv.interface';
+import { Certificate, Education, Profile } from '../../interfaces/cv.interface';
 import { Subscription } from 'rxjs';
 import { SwiperContainer, SwiperSlide } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
@@ -31,6 +31,13 @@ export enum ControlNamesEducation {
   Area = 'area',
   StartDate = 'startDate',
   EndDate = 'endDate'
+}
+
+export enum ControlNamesCertificate{
+  Url = 'url',
+  Name = 'name',
+  Date = 'date',
+  Issuer = 'issuer'
 }
 
 export enum Group {
@@ -119,6 +126,17 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     });
   }
 
+  addCertificateGroup(certificates: Certificate[]){
+    certificates.forEach((certificate)=>{
+      this.arrayCertificates.push(this.fb.group({
+        [ControlNamesCertificate.Name]: this.fb.control(certificate.name, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesCertificate.Url]: this.fb.control(certificate.url, {validators: [Validators.required, Validators.pattern(URL_PATTERN)], updateOn: 'blur'}),
+        [ControlNamesCertificate.Date]: this.fb.control(certificate.date, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesCertificate.Issuer]: this.fb.control(certificate.issuer, {validators: [Validators.required], updateOn: 'blur'}),
+      }));
+    });
+  }
+
 
   get arrayNetworks(): FormArray {
     return this.myForm.get(Group.PersonalInfo)?.get(ControlNamesPersonalInfo.Profiles) as FormArray;
@@ -126,6 +144,10 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   get arrayEducation(): FormArray {
     return this.myForm.get(Group.Education)?.get(Group.Education) as FormArray;
+  }
+
+  get arrayCertificates(): FormArray {
+    return this.myForm.get(Group.Certificates)?.get(Group.Certificates) as FormArray;
   }
 
   formatPersonalInfoGroup(){
@@ -170,6 +192,7 @@ export class CreateCvComponent implements OnInit, OnDestroy{
         this.myForm.patchValue(dataParse);
         this.loadProfiles(dataParse);
         this.loadEducations(dataParse);
+        this.loadCertificates(dataParse)
       }
     } catch (error) {
       localStorage.removeItem(LOCAL_STORAGE_FORM);
@@ -190,6 +213,11 @@ export class CreateCvComponent implements OnInit, OnDestroy{
   loadEducations(form: any){
     const educations: Education[] = (form[Group.Education][Group.Education] as Education[]);
     this.addEducationGroup(educations);
+  }
+
+  loadCertificates(form: any){
+    const certificates: Certificate[] = (form[Group.Certificates][Group.Certificates] as Certificate[]);
+    this.addCertificateGroup(certificates);
   }
 
   saveForm(){

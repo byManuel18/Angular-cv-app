@@ -24,6 +24,7 @@ import { SelectComponent } from '../shared/components/select/select.component';
 import { ArrayFilterPipe } from '../shared/pipes/arrayFilter.pipe';
 import { ButtonComponent } from '../shared/components/button/button.component';
 import { EducationFormComponent } from './components/educationForm/educationForm.component';
+import { CertificatesFormComponent } from './components/certificatesForm/certificatesForm.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { EducationFormComponent } from './components/educationForm/educationForm
     ShowCvComponent,
     CreateCvComponent,
     PersonalFormComponent,
-    EducationFormComponent
+    EducationFormComponent,
+    CertificatesFormComponent
   ],
   imports: [
     CommonModule,

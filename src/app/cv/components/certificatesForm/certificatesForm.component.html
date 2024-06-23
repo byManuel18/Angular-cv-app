@@ -1,0 +1,23 @@
+
+
+@if(certificatesInfoGroup){
+  <fieldset [formGroup]="certificatesInfoGroup!">
+    <h1>Educación</h1>
+    <section [formArrayName]="this.geArrayCertificatesName()">
+      <shared-button (onClick)="addCertificates()" label="Añadir"/>
+      @if(this.getArrayCertificates.length > 0){
+        @for (control of this.getArrayCertificates.controls; track $index) {
+          <article>
+
+            <shared-button (onClick)="removeCertificate($index)" label="Eliminar"/>
+          </article>
+        }
+      }
+
+    </section>
+
+    <div class="btnContainer">
+      <shared-button (onClick)="goNext()" label="Siguiente"/>
+    </div>
+  </fieldset>
+}

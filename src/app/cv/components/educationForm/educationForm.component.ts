@@ -23,16 +23,16 @@ export class EducationFormComponent implements AfterViewChecked{
 
   controlsErrors: {[key in ControlNamesEducation]: { [key: string ]: string}} = {
     area: {
-
+      'required': 'Campo Obligatorio',
     },
     endDate: {
-
+      'required': 'Campo Obligatorio',
     },
     institution: {
-
+      'required': 'Campo Obligatorio',
     },
     startDate: {
-
+      'required': 'Campo Obligatorio',
     }
   }
 

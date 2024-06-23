@@ -7,7 +7,11 @@
       <swiper-slide #educationSlider >
         <cv-education-form [educationInfoGroup]="this.getFormGroup('Education')" (newArrayEducation)="addEducationGroup([$event])" [siwperSlide]="educationSlider" (goNextStep)="nextSlider($event)" />
       </swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
+      <swiper-slide #certificatesSlider>
+        <cv-certificates-form  [certificatesInfoGroup]="this.getFormGroup('Certificates')" (newArrayCertificates)="addCertificateGroup([$event])" [siwperSlide]="certificatesSlider" (goNextStep)="nextSlider($event)" />
+      </swiper-slide>
+      <swiper-slide>Slide 4</swiper-slide>
+      <swiper-slide>Slide 5</swiper-slide>
     </swiper-container>
 
   </form>
