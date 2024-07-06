@@ -148,7 +148,7 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   addWorkGroup(works: Volunteer[]){
     works.forEach((work)=>{
-      this.arrayCertificates.push(this.fb.group({
+      this.arrayWorks.push(this.fb.group({
         [ControlNamesWork.Name]: this.fb.control(work.name, {validators: [Validators.required], updateOn: 'blur'}),
         [ControlNamesWork.EndDate]: this.fb.control(work.endDate, {validators: [], updateOn: 'blur'}),
         [ControlNamesWork.StartDate]: this.fb.control(work.startDate, {validators: [Validators.required], updateOn: 'blur'}),
@@ -218,7 +218,8 @@ export class CreateCvComponent implements OnInit, OnDestroy{
         this.myForm.patchValue(dataParse);
         this.loadProfiles(dataParse);
         this.loadEducations(dataParse);
-        this.loadCertificates(dataParse)
+        this.loadCertificates(dataParse);
+        this.loadProfesions(dataParse);
       }
     } catch (error) {
       localStorage.removeItem(LOCAL_STORAGE_FORM);
@@ -244,6 +245,11 @@ export class CreateCvComponent implements OnInit, OnDestroy{
   loadCertificates(form: any){
     const certificates: Certificate[] = (form[Group.Certificates][Group.Certificates] as Certificate[]);
     this.addCertificateGroup(certificates);
+  }
+
+  loadProfesions(form: any){
+    const works: Volunteer[] = (form[Group.Work][Group.Work] as Volunteer[]);
+    this.addWorkGroup(works);
   }
 
   saveForm(){

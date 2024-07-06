@@ -1,0 +1,16 @@
+:host {
+
+  div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    shared-input{
+      grid-column: span 2;
+    }
+
+    shared-button{
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

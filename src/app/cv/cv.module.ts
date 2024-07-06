@@ -25,6 +25,8 @@ import { ArrayFilterPipe } from '../shared/pipes/arrayFilter.pipe';
 import { ButtonComponent } from '../shared/components/button/button.component';
 import { EducationFormComponent } from './components/educationForm/educationForm.component';
 import { CertificatesFormComponent } from './components/certificatesForm/certificatesForm.component';
+import { ProfesionFormComponent } from './components/profesionForm/profesionFormcomponent';
+import { InputSelectComponent } from '../shared/components/inputSelect/inputSelect.component';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { CertificatesFormComponent } from './components/certificatesForm/certifi
     CreateCvComponent,
     PersonalFormComponent,
     EducationFormComponent,
-    CertificatesFormComponent
+    CertificatesFormComponent,
+    ProfesionFormComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +58,8 @@ import { CertificatesFormComponent } from './components/certificatesForm/certifi
     TextareaComponent,
     SelectComponent,
     ArrayFilterPipe,
-    ButtonComponent
+    ButtonComponent,
+    InputSelectComponent
   ],
   providers: [TitleCasePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

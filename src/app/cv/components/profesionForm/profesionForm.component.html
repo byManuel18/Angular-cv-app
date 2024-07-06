@@ -1,0 +1,49 @@
+
+
+@if(profesionGroup){
+  <fieldset #fielsetMain [formGroup]="profesionGroup!">
+    <h1>Experiencia Laboral</h1>
+    <section [formArrayName]="this.geArrayProfesionName()">
+      <shared-button (onClick)="addWork()" label="Añadir"/>
+      @if(this.getArrayProfesion.length > 0){
+        @for (control of this.getArrayProfesion.controls; track $index) {
+          <article>
+            <div class="split">
+              <shared-input label="Empresa" [errorsControl]="controlsErrors.name" [formControName]="this.getControlName('Name')" [formGroup]="getGroupProfesion($index)" />
+              <shared-input label="Puesto" [errorsControl]="controlsErrors.position" [formControName]="this.getControlName('Position')" [formGroup]="getGroupProfesion($index)" />
+            </div>
+
+            <div class="split">
+              <shared-input label="Fecha Inicio" inputType="date" [errorsControl]="controlsErrors.startDate" [formControName]="this.getControlName('StartDate')" [formGroup]="getGroupProfesion($index)" />
+              <shared-input label="Fecha Fin" inputType="date" [errorsControl]="controlsErrors.endDate" [formControName]="this.getControlName('EndDate')" [formGroup]="getGroupProfesion($index)" />
+            </div>
+
+            <shared-textarea label="Resumen" [errorsControl]="controlsErrors.summary" [formControName]="this.getControlName('Summary')" [formGroup]="getGroupProfesion($index)" />
+
+            <section class="sectionHighlights">
+
+                <shared-input-select btnTitle="Añadir" inputTitle="Destacado" (getValue)="addHighlights($index, $event)"/>
+
+              <div>
+                @for (controlH of getHighlights($index).controls; let id2 = $index; track id2) {
+                  <div class="highlightsContainer">
+                    <shared-chip [title]="controlH.value"/>
+                    <button (click)="removeHighlights($index, id2)">x</button>
+                  </div>
+                }
+
+              </div>
+            </section>
+
+            <shared-button (onClick)="removeWork($index)" label="Eliminar"/>
+          </article>
+        }
+      }
+
+    </section>
+
+    <div class="btnContainer">
+      <shared-button (onClick)="goNext()" label="Siguiente"/>
+    </div>
+  </fieldset>
+}

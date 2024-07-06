@@ -10,7 +10,9 @@
       <swiper-slide #certificatesSlider>
         <cv-certificates-form  [certificatesInfoGroup]="this.getFormGroup('Certificates')" (newArrayCertificates)="addCertificateGroup([$event])" [siwperSlide]="certificatesSlider" (goNextStep)="nextSlider($event)" />
       </swiper-slide>
-      <swiper-slide>Slide 4</swiper-slide>
+      <swiper-slide #worksSlider>
+        <cv-profesion-form [profesionGroup]="this.getFormGroup('Work')" (newArrayProfesion)="addWorkGroup([$event])" [siwperSlide]="worksSlider" (goNextStep)="nextSlider($event)" />
+      </swiper-slide>
       <swiper-slide>Slide 5</swiper-slide>
     </swiper-container>
 
