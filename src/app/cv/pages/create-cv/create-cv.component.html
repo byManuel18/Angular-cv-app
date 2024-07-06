@@ -12,8 +12,10 @@
       </swiper-slide>
       <swiper-slide #worksSlider>
         <cv-profesion-form [profesionGroup]="this.getFormGroup('Work')" (newArrayProfesion)="addWorkGroup([$event])" [siwperSlide]="worksSlider" (goNextStep)="nextSlider($event)" />
-      </swiper-slide>
-      <swiper-slide>Slide 5</swiper-slide>
+      </swiper-slide >
+     <swiper-slide #projectSlider>
+      <cv-project-form [projectGroup]="this.getFormGroup('Projects')" (newArrayProject)="addProjectGroup([$event])" [siwperSlide]="projectSlider" (goNextStep)="nextSlider($event)"/>
+     </swiper-slide>
     </swiper-container>
 
   </form>

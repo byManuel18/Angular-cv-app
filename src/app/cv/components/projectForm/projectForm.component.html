@@ -1,0 +1,49 @@
+
+
+@if(projectGroup){
+  <fieldset #fielsetMain [formGroup]="projectGroup!">
+    <h1>Proyectos Personales</h1>
+    <section [formArrayName]="this.geArrayProjectName()">
+    <shared-button (onClick)="addProject()" label="Añadir"/>
+    @if(this.getArrayProject.length > 0){
+      @for (control of this.getArrayProject.controls; track $index) {
+        <article>
+            <div class="split2">
+              <shared-input label="Nombre" [errorsControl]="controlsErrors.name" [formControName]="this.getControlName('Name')" [formGroup]="getGroupProject($index)" />
+              <shared-check label="Activo" (isChecked)="this.setActiveValue($index,$event)" [checked]="this.getActiveControl($index).value"></shared-check>
+            </div>
+
+            <div class="split">
+              <shared-input label="Url Proyecto" [errorsControl]="controlsErrors.url" [formControName]="this.getControlName('Url')" [formGroup]="getGroupProject($index)" />
+              <shared-input label="Url Repositorio" [errorsControl]="controlsErrors.github" [formControName]="this.getControlName('Github')" [formGroup]="getGroupProject($index)" />
+            </div>
+
+            <shared-textarea label="Descripción" [errorsControl]="controlsErrors.description" [formControName]="this.getControlName('Description')" [formGroup]="getGroupProject($index)" />
+
+            <section class="sectionHighlights">
+
+                <shared-input-select btnTitle="Añadir" inputTitle="Destacado" (getValue)="addHighlights($index, $event)"/>
+
+              <div>
+                @for (controlH of getHighlights($index).controls; let id2 = $index; track id2) {
+                  <div class="highlightsContainer">
+                    <shared-chip [title]="controlH.value"/>
+                    <button (click)="removeHighlights($index, id2)">x</button>
+                  </div>
+                }
+
+              </div>
+            </section>
+
+            <shared-button (onClick)="removeProject($index)" label="Eliminar"/>
+          </article>
+        }
+      }
+
+    </section>
+
+    <div class="btnContainer">
+      <shared-button (onClick)="goNext()" label="Siguiente"/>
+    </div>
+  </fieldset>
+}

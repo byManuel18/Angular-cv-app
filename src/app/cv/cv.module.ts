@@ -27,6 +27,8 @@ import { EducationFormComponent } from './components/educationForm/educationForm
 import { CertificatesFormComponent } from './components/certificatesForm/certificatesForm.component';
 import { ProfesionFormComponent } from './components/profesionForm/profesionFormcomponent';
 import { InputSelectComponent } from '../shared/components/inputSelect/inputSelect.component';
+import { ProjectFormComponent } from './components/projectForm/projectForm.component';
+import { CheckComponent } from '../shared/components/check/check.component';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { InputSelectComponent } from '../shared/components/inputSelect/inputSele
     PersonalFormComponent,
     EducationFormComponent,
     CertificatesFormComponent,
-    ProfesionFormComponent
+    ProfesionFormComponent,
+    ProjectFormComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +62,8 @@ import { InputSelectComponent } from '../shared/components/inputSelect/inputSele
     SelectComponent,
     ArrayFilterPipe,
     ButtonComponent,
-    InputSelectComponent
+    InputSelectComponent,
+    CheckComponent
   ],
   providers: [TitleCasePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

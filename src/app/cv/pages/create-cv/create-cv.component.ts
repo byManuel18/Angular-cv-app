@@ -1,9 +1,9 @@
 import { Utils } from './../../../shared/utils/utils';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Certificate, Education, Profile, Volunteer } from '../../interfaces/cv.interface';
+import { Certificate, Education, Profile, Project, Volunteer } from '../../interfaces/cv.interface';
 import { Subscription } from 'rxjs';
-import { SwiperContainer, SwiperSlide } from 'swiper/element';
+import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 
 
@@ -49,11 +49,21 @@ export enum ControlNamesWork{
   Highlights = 'highlights'
 }
 
+export enum ControlNamesProject{
+  Name = 'name',
+  Active = 'isActive',
+  Description = 'description',
+  Url = 'url',
+  Github = 'github',
+  Highlights = 'highlights'
+}
+
 export enum Group {
   PersonalInfo = 'personalInfo',
   Education = 'education',
   Certificates = 'certificates',
   Work = 'work',
+  Projects = 'projects'
 }
 
 const LOCAL_STORAGE_FORM: string = 'CV-FORM';
@@ -86,7 +96,8 @@ export class CreateCvComponent implements OnInit, OnDestroy{
       [Group.PersonalInfo] : this.formatPersonalInfoGroup(),
       [Group.Education]: this.formatEducationGroup(),
       [Group.Work]: this.formatWorkGroup(),
-      [Group.Certificates]: this.formatCertificatesGroup()
+      [Group.Certificates]: this.formatCertificatesGroup(),
+      [Group.Projects]: this.formatProjectsGroup(),
     });
 
     this.loadForm();
@@ -154,7 +165,20 @@ export class CreateCvComponent implements OnInit, OnDestroy{
         [ControlNamesWork.StartDate]: this.fb.control(work.startDate, {validators: [Validators.required], updateOn: 'blur'}),
         [ControlNamesWork.Position]: this.fb.control(work.position, {validators: [Validators.required], updateOn: 'blur'}),
         [ControlNamesWork.Summary]: this.fb.control(work.summary, {validators: [Validators.required], updateOn: 'blur'}),
-        [ControlNamesWork.Highlights]: this.fb.array(work.highlights, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesWork.Highlights]: this.fb.array(work.highlights, {validators: [], updateOn: 'blur'}),
+      }));
+    });
+  }
+
+  addProjectGroup(projects: Project[]){
+    projects.forEach((project)=>{
+      this.arrayProjects.push(this.fb.group({
+        [ControlNamesProject.Name]: this.fb.control(project.name, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesProject.Active]: this.fb.control(project.isActive, {validators: [], updateOn: 'blur'}),
+        [ControlNamesProject.Description]: this.fb.control(project.description, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesProject.Url]: this.fb.control(project.url, {validators: [Validators.pattern(URL_PATTERN)], updateOn: 'blur'}),
+        [ControlNamesProject.Github]: this.fb.control(project.github, {validators: [Validators.pattern(URL_PATTERN)], updateOn: 'blur'}),
+        [ControlNamesProject.Highlights]: this.fb.array(project.highlights, {validators: [], updateOn: 'blur'}),
       }));
     });
   }
@@ -174,6 +198,10 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   get arrayWorks(): FormArray {
     return this.myForm.get(Group.Work)?.get(Group.Work) as FormArray;
+  }
+
+  get arrayProjects(): FormArray {
+    return this.myForm.get(Group.Projects)?.get(Group.Projects) as FormArray;
   }
 
   formatPersonalInfoGroup(){
@@ -210,6 +238,12 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     })
   }
 
+  formatProjectsGroup(){
+    return this.fb.group({
+      [Group.Projects]: this.fb.array([])
+    })
+  }
+
   loadForm(){
     try {
       const savedFrom = localStorage.getItem(LOCAL_STORAGE_FORM);
@@ -220,6 +254,7 @@ export class CreateCvComponent implements OnInit, OnDestroy{
         this.loadEducations(dataParse);
         this.loadCertificates(dataParse);
         this.loadProfesions(dataParse);
+        this.loadProjects(dataParse);
       }
     } catch (error) {
       localStorage.removeItem(LOCAL_STORAGE_FORM);
@@ -250,6 +285,11 @@ export class CreateCvComponent implements OnInit, OnDestroy{
   loadProfesions(form: any){
     const works: Volunteer[] = (form[Group.Work][Group.Work] as Volunteer[]);
     this.addWorkGroup(works);
+  }
+
+  loadProjects(form: any){
+    const project: Project[] = (form[Group.Projects][Group.Projects] as Project[]);
+    this.addProjectGroup(project);
   }
 
   saveForm(){
