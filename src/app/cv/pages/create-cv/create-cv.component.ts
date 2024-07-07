@@ -7,6 +7,7 @@ import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 import { FullForm } from '../../interfaces/cv-form.interfaces';
 import { Router } from '@angular/router';
+import { CvService } from '../../services/cv.service';
 
 export enum ControlNamesPersonalInfo {
   Name = 'name',
@@ -89,6 +90,8 @@ export class CreateCvComponent implements OnInit, OnDestroy{
   myForm : FormGroup;
 
   fb = inject(FormBuilder);
+  router = inject(Router);
+  cvService = inject(CvService);
 
   $formSubscription?: Subscription;
 
@@ -98,7 +101,6 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   indexActive: number = 0;
 
-  router = inject(Router);
 
   constructor(){
 
@@ -385,9 +387,10 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
     if(group.valid && this.myForm.valid){
       const cv = this.formatCSV(this.myForm.getRawValue());
-
-      this.router.navigate([`cv/show-cv`],{
-        queryParams: { jObj: 'ide'}});
+      this.cvService.create(cv).then(key=>{
+        this.router.navigate([`cv/show-cv`],{
+            queryParams: { jObj: key}});
+      })
     }
   }
 

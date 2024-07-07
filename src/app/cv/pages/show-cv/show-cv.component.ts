@@ -111,14 +111,7 @@ export class ShowCvComponent {
     if (!param) {
       return this.cvService.getMyCv();
     }
-
-    try {
-      const jObjString: string = decodeURIComponent(param);
-      const cvJson: Cv = JSON.parse(jObjString);
-      return of(cvJson);
-    } catch (error) {
-      return of(null);
-    }
+    return this.cvService.getCv(param);
   }
 
   formatCvArticles(cv: Cv | null): CvSection[] {
