@@ -10,7 +10,7 @@ export const routes: Routes = [
     component: LayoutPageComponent,
     children: [
       {
-        path: `${ CVMODULEROUTES.SHOWCV }/:jObj`,
+        path: `${ CVMODULEROUTES.SHOWCV }`,
         component: ShowCvComponent,
       },
       {
@@ -19,12 +19,12 @@ export const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: `${ CVMODULEROUTES.SHOWCV }/myCV`
+        redirectTo: `${ CVMODULEROUTES.SHOWCV }`
       }
     ]
   },
   {
     path: '**',
-    redirectTo: `${ CVMODULEROUTES.SHOWCV }/myCV`
+    redirectTo: `${ CVMODULEROUTES.SHOWCV }`
   }
 ];

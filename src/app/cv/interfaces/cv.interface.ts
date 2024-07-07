@@ -37,10 +37,10 @@ export interface Basics {
 }
 
 export interface Location {
-  address: string;
+  address?: string;
   postalCode: string;
   city: string;
-  countryCode: string;
+  countryCode?: string;
   region: string;
 }
 
@@ -103,8 +103,8 @@ export interface Reference {
 export interface Skill {
   name: string;
   icon:SkillsNames;
-  level: Level;
-  keywords: string[];
+  level?: Level;
+  keywords?: string[];
 }
 
 export enum Level {

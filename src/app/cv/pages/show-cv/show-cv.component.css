@@ -45,7 +45,7 @@
 :host-context(.platform-core){
   #project{
     margin-inline: -16px;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
   }
 }
 

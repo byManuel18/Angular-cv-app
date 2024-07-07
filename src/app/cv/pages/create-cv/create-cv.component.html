@@ -16,6 +16,9 @@
      <swiper-slide #projectSlider>
       <cv-project-form [projectGroup]="this.getFormGroup('Projects')" (newArrayProject)="addProjectGroup([$event])" [siwperSlide]="projectSlider" (goNextStep)="nextSlider($event)"/>
      </swiper-slide>
+     <swiper-slide #skillSlider>
+      <cv-skill-form [skillGroup]="this.getFormGroup('Skills')" (newArraySkill)="addSkillGroup([$event])" [siwperSlide]="skillSlider" (goNextStep)="createCV()"/>
+     </swiper-slide>
     </swiper-container>
 
   </form>

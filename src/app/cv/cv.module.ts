@@ -29,6 +29,7 @@ import { ProfesionFormComponent } from './components/profesionForm/profesionForm
 import { InputSelectComponent } from '../shared/components/inputSelect/inputSelect.component';
 import { ProjectFormComponent } from './components/projectForm/projectForm.component';
 import { CheckComponent } from '../shared/components/check/check.component';
+import { SkillFormComponent } from './components/skillForm/skillForm.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { CheckComponent } from '../shared/components/check/check.component';
     EducationFormComponent,
     CertificatesFormComponent,
     ProfesionFormComponent,
-    ProjectFormComponent
+    ProjectFormComponent,
+    SkillFormComponent
   ],
   imports: [
     CommonModule,

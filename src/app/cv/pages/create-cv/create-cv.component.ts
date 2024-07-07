@@ -1,11 +1,12 @@
 import { Utils } from './../../../shared/utils/utils';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Certificate, Education, Profile, Project, Volunteer } from '../../interfaces/cv.interface';
+import { Certificate, Cv, Education, Profile, Project, Skill, Volunteer } from '../../interfaces/cv.interface';
 import { Subscription } from 'rxjs';
 import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
-
+import { FullForm } from '../../interfaces/cv-form.interfaces';
+import { Router } from '@angular/router';
 
 export enum ControlNamesPersonalInfo {
   Name = 'name',
@@ -56,6 +57,12 @@ export enum ControlNamesProject{
   Url = 'url',
   Github = 'github',
   Highlights = 'highlights'
+
+}
+
+export enum ControlNamesSkills{
+  Name = 'name',
+  Icon = 'icon'
 }
 
 export enum Group {
@@ -63,7 +70,8 @@ export enum Group {
   Education = 'education',
   Certificates = 'certificates',
   Work = 'work',
-  Projects = 'projects'
+  Projects = 'projects',
+  Skills = 'skills'
 }
 
 const LOCAL_STORAGE_FORM: string = 'CV-FORM';
@@ -90,6 +98,8 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   indexActive: number = 0;
 
+  router = inject(Router);
+
   constructor(){
 
     this.myForm = this.fb.group({
@@ -98,6 +108,7 @@ export class CreateCvComponent implements OnInit, OnDestroy{
       [Group.Work]: this.formatWorkGroup(),
       [Group.Certificates]: this.formatCertificatesGroup(),
       [Group.Projects]: this.formatProjectsGroup(),
+      [Group.Skills]: this.formatSkillsGroup(),
     });
 
     this.loadForm();
@@ -183,6 +194,15 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     });
   }
 
+  addSkillGroup(skills: Skill[]){
+    skills.forEach((skill)=>{
+      this.arraySkills.push(this.fb.group({
+        [ControlNamesSkills.Name]: this.fb.control(skill.name, {validators: [Validators.required], updateOn: 'blur'}),
+        [ControlNamesSkills.Icon]: this.fb.control(skill.icon, {validators: [Validators.required], updateOn: 'blur'}),
+      }));
+    });
+  }
+
 
   get arrayNetworks(): FormArray {
     return this.myForm.get(Group.PersonalInfo)?.get(ControlNamesPersonalInfo.Profiles) as FormArray;
@@ -202,6 +222,10 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   get arrayProjects(): FormArray {
     return this.myForm.get(Group.Projects)?.get(Group.Projects) as FormArray;
+  }
+
+  get arraySkills(): FormArray {
+    return this.myForm.get(Group.Skills)?.get(Group.Skills) as FormArray;
   }
 
   formatPersonalInfoGroup(){
@@ -244,6 +268,12 @@ export class CreateCvComponent implements OnInit, OnDestroy{
     })
   }
 
+  formatSkillsGroup(){
+    return this.fb.group({
+      [Group.Skills]: this.fb.array([])
+    })
+  }
+
   loadForm(){
     try {
       const savedFrom = localStorage.getItem(LOCAL_STORAGE_FORM);
@@ -255,6 +285,7 @@ export class CreateCvComponent implements OnInit, OnDestroy{
         this.loadCertificates(dataParse);
         this.loadProfesions(dataParse);
         this.loadProjects(dataParse);
+        this.loadSkills(dataParse);
       }
     } catch (error) {
       localStorage.removeItem(LOCAL_STORAGE_FORM);
@@ -290,6 +321,11 @@ export class CreateCvComponent implements OnInit, OnDestroy{
   loadProjects(form: any){
     const project: Project[] = (form[Group.Projects][Group.Projects] as Project[]);
     this.addProjectGroup(project);
+  }
+
+  loadSkills(form: any){
+    const skills: Skill[] = (form[Group.Skills][Group.Skills] as Skill[]);
+    this.addSkillGroup(skills);
   }
 
   saveForm(){
@@ -341,6 +377,50 @@ export class CreateCvComponent implements OnInit, OnDestroy{
 
   validateGroup(form: FormGroup){
     Utils.marAllAsDirty(form)
+  }
+
+  createCV(){
+    const group = this.getFormGroup(this.balls[this.balls.length - 1]);
+    this.validateGroup(group);
+
+    if(group.valid && this.myForm.valid){
+      const cv = this.formatCSV(this.myForm.getRawValue());
+
+      this.router.navigate([`cv/show-cv`],{
+        queryParams: { jObj: 'ide'}});
+    }
+  }
+
+
+  formatCSV(myForm: FullForm): Cv{
+    return {
+      work: myForm.work.work,
+      basics: {
+        email: myForm.personalInfo.email,
+        image: myForm.personalInfo.image,
+        label: myForm.personalInfo.label,
+        location: {
+          city: myForm.personalInfo.city,
+          postalCode: myForm.personalInfo.postalCode,
+          region: myForm.personalInfo.region
+        },
+        name: myForm.personalInfo.name,
+        phone: myForm.personalInfo.phone,
+        summary: myForm.personalInfo.sumary,
+        url: myForm.personalInfo.url,
+        profiles: myForm.personalInfo.profiles.map(p=>{return {network: p.name, url: p.url}}),
+      },
+      certificates: myForm.certificates.certificates,
+      education: myForm.education.education,
+      skills: myForm.skills.skills,
+      awards: [],
+      interests:[],
+      languages:[],
+      projects: myForm.projects.projects,
+      publications:[],
+      references: [],
+      volunteer:[]
+    }
   }
 
 }

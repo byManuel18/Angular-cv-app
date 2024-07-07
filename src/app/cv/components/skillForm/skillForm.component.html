@@ -1,0 +1,28 @@
+
+
+@if(skillGroup){
+  <fieldset #fielsetMain [formGroup]="skillGroup!">
+    <h1>Habilidades</h1>
+    <section [formArrayName]="this.geArraySkillName()">
+      <article class="profileSelect split2">
+        <shared-select [dataSelect]="selectSkillArray | arrayFilter:getArraySkillsSelected():'skill'" [label]="'label'" [optionKey]="'skill'" [labelSelect]="'Habilidades'"  (selectChange)="changeSelectSkill($event)" [value]="selectedSkill() ? selectedSkill()!.skill : ''"></shared-select>
+        <shared-button [disabled]="!selectedSkill()" (onClick)="addSkill()" label="Añadir"/>
+      </article>
+    @if(this.getArraySkills.length > 0){
+      <section class="sectionHighlights">
+        @for (control of this.getArraySkills.controls; track $index) {
+          <div class="highlightsContainer">
+            <shared-chip [icon]="getGroupSkill($index).controls[this.getControlName('Icon')].value" [title]="getGroupSkill($index).controls[this.getControlName('Name')].value"/>
+            <button (click)="removeSkill($index)">x</button>
+          </div>
+          }
+      </section>
+    }
+
+    </section>
+
+    <div class="btnContainer">
+      <shared-button (onClick)="goNext()" label="Finalizar"/>
+    </div>
+  </fieldset>
+}

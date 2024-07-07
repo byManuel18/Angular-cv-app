@@ -47,7 +47,7 @@ export class ShowCvComponent {
   @ViewChild('ninjaKeys') ninjaKeys?: ElementRef;
 
   _cvToShow = toSignal<Cv | null>(
-    this.activedRouter.params.pipe(
+    this.activedRouter.queryParams.pipe(
       switchMap((params) => this.getCv(params['jObj']))
     ),
     {
@@ -108,7 +108,7 @@ export class ShowCvComponent {
   constructor() {}
 
   getCv(param: string = ''): Observable<Cv | null> {
-    if (param === 'myCV') {
+    if (!param) {
       return this.cvService.getMyCv();
     }
 
